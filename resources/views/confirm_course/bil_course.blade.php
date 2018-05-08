@@ -118,7 +118,8 @@ return "$strDay $strMonthThai $strYear";
                 <i class="fa fa-smile-o"></i> รอการตรวจสอบ
               </h3>
               <img src="{{url('assets/images/docs-anywhere.png')}}" class="img-responsive" style="margin: 0 auto">
-              <p class="text-center"> ระบบได้ทำการส่ง ใบเสร็จของการซื้อคอร์สเรียน Learnsbuy ไปที่อีเมล์ของคุณแล้วครับ หลังจากที่เจ้าหน้าที่ทำการตรวจสอบข้อมูล จะทำการส่งอีเมล์แจ้งให้เริ่มเรียนได้ภายใน 48 ชม.หนังสือเรียนจะถูกจัดส่งไปตามที่อยู่ใช้เวลา 3-14 วัน (ขึ้นอยู่กับสต็อกหนังสือและไปรษณีย์ครับ)</p>
+              <p class="text-center"> ในหน้าสินค้าที่คุณต้องการสั่งซื้อ โปรดใส่รหัสไปรษณีย์และคลิกทีตรวจสอบ จากนั้นระบบก็จะแสดงระยะเวลาในการดำเนินการจัดส่งโดยประมาณที่ด้านล่างขวามือของช่องระบุรหัสไปรษณีย์ คุณจะได้รับ
+                เอกสารยืนยันคำสั่งซื้อและรายละเอียดของคำสั่งซื้อ ผ่านทาง อีเมล์ หลังจากที่คุณได้ทำการสั่งซื้อสินค้า เราจะแจ้งให้คุณทราบอีกครั้งเมื่อสินค้าของคุณได้รับการจัดส่งแล้ว</p>
               @else
               <h3 class="text-center text-success">
                 <i class="fa fa-child"></i> ทำการชำระเงินเรียบร้อย
@@ -133,42 +134,37 @@ return "$strDay $strMonthThai $strYear";
             <div class="">
             <div class="col-md-12 course-overall-wrapper">
               <h4>บิลเลขที่ {{$courseinfo->Oid}}</h4>
+
             <table class="table table-striped">
                 <tr>
                   <td>ชื่อผู้เรียน</td>
-                  <td class="text-right">{{$courseinfo->name}}</td>
+                  <td class="text-right">kimkundad</td>
                 </tr>
                 <tr>
-                  <td>คอร์สเรียน</td>
+                  <td>ชื่อสินค้า</td>
                   <td class="text-right">{{$courseinfo->title_course}}</td>
                 </tr>
+
                 <tr>
-                  <td>ช่วงเวลาที่เรียน</td>
-                  <td class="text-right"><?php echo DateThaif($courseinfo->start_course); ?> - <?php echo DateThai($courseinfo->end_course); ?></td>
+                  <td>จัดจำหน่ายโดย</td>
+                  <td class="text-right">lazada</td>
                 </tr>
                 <tr>
-                  <td>วันที่เรียน</td>
-                  <td class="text-right">{{$courseinfo->day_course}}</td>
+                  <td>ตัวเลือกในการจัดส่ง</td>
+                  <td class="text-right">สามารถเก็บเงินปลายทางได้</td>
+                </tr>
+
+                <tr>
+                  <td><i class="fa fa-bus"></i> ตัวเลือกในการจัดส่ง</td>
+                  <td class="text-right"> จัดส่งแบบธรรมดา</td>
                 </tr>
                 <tr>
-                  <td>ที่อยู่จัดส่งเอกสาร</td>
-                  <td class="text-right">{{$courseinfo->address}}</td>
-                </tr>
-                <tr>
-                  <td>เวลาที่เรียน</td>
-                  <td class="text-right">{{$courseinfo->time_course}}</td>
-                </tr>
-                <tr>
-                  <td><i class="fa fa-cloud-download"></i> เอกสารการเรียน</td>
-                  <td class="text-right"> มีให้ดาวน์โหลด</td>
-                </tr>
-                <tr>
-                  <td><i class="fa fa-video-camera"></i> วีดีโอย้อนหลัง</td>
-                  <td class="text-right"> มีให้</td>
+                  <td><i class="fa fa-diamond"></i> การคืนสินค้า และ การรับประกัน</td>
+                  <td class="text-right"> คืนสินค้าได้ภายใน 7 วัน, ไม่มีการรับประกันสินค้า</td>
                 </tr>
                 <tr>
                   <td><b class="status"> สถานะ</b></td>
-                  <td class="text-right text-danger"> <b class="status">โอนเงินแล้ว </b></td>
+                  <td class="text-right text-danger"> <b class="status">รอการตรวจสอบ </b></td>
                 </tr>
 
                 <tr>
@@ -178,7 +174,7 @@ return "$strDay $strMonthThai $strYear";
                 </tr>
               </table>
 
-              <a type="submit" href="{{url('/user_course')}}" class="btn btn-success1 btn-lg btn-block"><i class="fa fa-upload"></i> ไปยังหน้าคอร์สเรียน</a>
+              <a type="submit" href="{{url('/')}}" class="btn btn-success1 btn-lg btn-block"><i class="fa fa-upload"></i> กลับไปยังหน้าแรก</a>
               <br>
               </div>
               </div>

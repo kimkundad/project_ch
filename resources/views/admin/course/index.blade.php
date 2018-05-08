@@ -44,11 +44,8 @@
                 <div class="row">
                   <div class="col-md-12">
                     <a class="btn btn-default " href="{{url('admin/course/create')}}" role="button">
-                      <i class="fa fa-plus"></i> เพิ่มคอร์สเรียน</a>
-                      <a class="btn btn-danger " href="{{url('admin/typecourse')}}" role="button">
-                      <i class="fa fa-cubes"></i> ประเภทคอร์ส</a>
-                      <a class="btn btn-success " href="{{url('admin/category')}}" role="button">
-                      <i class="fa fa-question-circle"></i> หมวดหมู่แบบฝึกหัด</a>
+                      <i class="fa fa-plus"></i> เพิ่มสินค้า</a>
+
                   </div>
 
                 </div>
@@ -58,10 +55,9 @@
                   <thead>
                     <tr>
                       <th>#code</th>
-                      <th>คอร์สเรียน</th>
+                      <th>ชื่อสินค้า</th>
                       <th>ประเภท</th>
-                      <th>ภาควิชา</th>
-                      <th>วันที่เรียน</th>
+                      <th>ราคา</th>
                       <th>Status</th>
                       <th>Actions</th>
                     </tr>
@@ -72,19 +68,14 @@
                     <tr id="{{$u->id}}">
                       <td>{{$u->code_course}}</td>
                       <td>{{$u->title_course}}</td>
-                      <td>@foreach($course as $courses)
-                        @if($u->type_course == $courses->id)
-                        {{$courses->type_name}}
-                        @endif
-                        @endforeach
-                        </td>
+
                         <td>@foreach($department as $departments)
                           @if($u->department_id == $departments->id)
                           {{$departments->name_department}}
                           @endif
                           @endforeach
                           </td>
-                      <td>{{$u->day_course}}</td>
+                          <td>{{$u->price_course}}</td>
 
                       <td>
                         <div class="switch switch-sm switch-success">
@@ -98,9 +89,9 @@
 
                       <td>
                         @if($u->e_id)
-                        <a style="float:left; margin:3px;" class="btn btn-success btn-xs" href="{{url('admin/course/'.$u->c_id)}}" role="button"><i class="fa fa-question-circle"></i> </a>
+
                         @endif
-                        <a style="float:left; margin:3px;" class="btn btn-primary btn-xs" href="https://learnsbuy.com/admin/course/{{$u->id}}/edit" role="button"><i class="fa fa-wrench"></i> </a>
+                        <a style="float:left; margin:3px;" class="btn btn-primary btn-xs" href="{{url('admin/course/'.$u->id.'/edit')}}" role="button"><i class="fa fa-wrench"></i> </a>
 
                           <form  action="{{url('admin/course/'.$u->id)}}" method="post" onsubmit="return(confirm('Do you want Delete'))">
                             <input type="hidden" name="_method" value="DELETE">
@@ -162,32 +153,7 @@ $(document).ready(function(){
 </script>
 
 
-<script>
 
-socket.on( 'new_count_message', function( data ) {
-
-$( "#new_count_message" ).html( data.new_count_message );
-  console.log(data.new_count_message);
-});
-
-socket.on( 'new_message', function( data ) {
-  var sum_check = 0;
-  console.log(data.message_in);
-  if(data.check_noti === sum_check ){
-
-    if(data.provider === 'email'){
-      $( "#messages_noti" ).append('<li><a href="{{url('admin/inbox_chat/')}}/'+ data.chat_user_id +'" class="clearfix"><figure class="image"><img src="{{url('assets/images/avatar/')}}/'+data.avatar+'" width="35" height="35" class="img-circle"></figure><span class="title">'+ data.name +'</span><span class="message">มีข้อความมาใหม่ถึงคุณ</span></a></li>');
-    }else{
-
-      $( "#messages_noti" ).append('<li><a href="{{url('admin/inbox_chat/')}}/'+ data.chat_user_id +'" class="clearfix"><figure class="image"><img src="//'+data.avatar+'" width="35" height="35" class="img-circle"></figure><span class="title">'+ data.name +'</span><span class="message">มีข้อความมาใหม่ถึงคุณ</span></a></li>');
-    }
-  }
-  console.log(data.check_noti);
-
-  $('#notif_audio')[0].play();
-});
-
-</script>
 
 @if ($message = Session::get('success_course'))
 <script type="text/javascript">

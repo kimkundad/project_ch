@@ -57,7 +57,6 @@ class HomeController extends Controller
           )
           ->leftjoin('typecourses', 'typecourses.id', '=', 'courses.type_course')
           ->where('typecourses.id', 2)
-          ->where('courses.ch_status', 1)
           ->orderBy('A', 'desc')
           ->get();
 

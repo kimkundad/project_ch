@@ -96,9 +96,10 @@ footer {
       </div>
 
       <div class="col-md-6" style="padding-right: 0px; ">
-        <h1 class="entry-title"><span id="typed">ZA-SHI </span>ภาษาญี่ปุ่นออนไลน์</h1>
-        <p class="lead-th" style="text-decoration:none">เรียนภาษาญี่ปุ่นเทคนิคเพียบกับครูพี่โฮมและอาจารย์ชาวญี่ปุ่น ภาษาญี่ปุ่นพื้นฐาน ภาษาญี่ปุ่นสำหรับศิลป์-ญี่ปุ่นและคนที่ไม่ได้เรียนศิลป์-ญี่ปุ่น ภาษาญี่ปุ่นสำหรับคนทำงาน ติว PAT 7.3 ภาษาญี่ปุ่น และติวสอบวัดระดับภาษาญี่ปุ่น ติว N1 N2 N3 N4 N5 ติวไวยากรณ์ ศัพท์ คันจิ การอ่าน การฟัง ระหว่างเรียนมีฟังก์ชั่นไลฟ์แชทและฟังก์ชั่นแบบทดสอบ วิเคราะห์ผลคะแนนออกมาเป็นกราฟ รู้จุดอ่อนจุดแข็งและประเมินโอกาสสอบผ่าน
-เรียนภาษาญี่ปุ่นออนไลน์กับครูพี่โฮม คนแรกและคนเดียวที่ได้ PAT ญี่ปุ่น 300 คะแนนเต็ม เกียรตินิยมอันดับ 1 (เหรียญทอง) อักษรศาสตร์ จุฬาฯ</p>
+        <h1 class="entry-title">ห้างสรรพสินค้าออนไลน์</h1>
+        <p class="lead-th" style="text-decoration:none">เราคือห้างสรรพสินค้าออนไลน์ที่ จัดส่งสินค้ารวดเร็ว เชื่อถือได้ และมอบความสะดวกสบายในการเลือกซื้อสินค้าแก่ลูกค้า
+        ด้วยการนำเสนอสินค้ามากมายหลากหลายชนิด ไม่ว่าจะเป็น แฟชั่น อุปกรณ์อิเล็กทรอนิคส์ ของเล่น อุปกรณ์กีฬา ไปจนถึงเครื่องใช้ในบ้าน พร้อมมอบสิ่งที่ดีที่สุด ให้แก่ลูกค้าเสมอ
+        ไม่ว่าจะเป็นวิธีการชำระเงินปลายทาง หรือบริการการคืนสินค้าฟรี และศูนย์บริการลูกค้าที่พร้อมจะให้คำแนะนำตลอดการเลือกซื้อสินค้า เราไม่เคยหยุดที่จะหาสิ่งที่ดีที่สุดให้คุณ เพราะเราคือห้างสรรพสินค้าที่อยู่เพียงแค่ปลายนิ้ว</p>
 
 
 
@@ -106,7 +107,7 @@ footer {
           <div class="row " style="padding-left:17px;">
 
             <p class="news-app-detail" style="float:right; margin-right: 45px;">
-    <a class="news-app-box" href="#" target="_blank"> "มาเรียนภาษาญี่ปุ่นกันเถอะ" เรียนออนไลน์ วันนี้ ทั้ง
+    <a class="news-app-box" href="#" target="_blank"> "สมัครเป็นส่วนหนึ่งของเวป วันนี้ ทั้ง
         <img src="{{url('assets/images/app.png')}}" data-pin-nopin="true"> และ <img src="{{url('assets/images/play.png')}}" data-pin-nopin="true"></a></p>
 
           </div>
@@ -120,7 +121,7 @@ footer {
 <div class="col-md-3" style="padding-left: 15px;">
 
         <div class="home-downstat">
-              <h2 class="text-center">สมัครเรียนกับครูพี่โฮม</h2>
+              <h2 class="text-center">สมัครเป็นส่วนหนึ่งของเวป</h2>
            <a href="{{url('register')}}" style="    width: 100%;" class="ui facebook fluid button"><i class="fa fa-facebook icon-fa"></i> สมัครหรือล็อกอินด้วย Facebook</a>
 
            <a href="{{url('register')}}" style="margin-top:12px;     width: 100%;" class="ui google plus fluid button"><i class="fa fa-google-plus icon-fa"></i> สมัครหรือล็อกอินด้วย Google</a>

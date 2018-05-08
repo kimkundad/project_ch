@@ -248,7 +248,7 @@
                         </div>
                 <div class="ap-user-data">
           <a class="ap-user-name" href="#">{{$objs->name}}</a>
-          <span class="ap-user-reputation"><i class="ap-questions-featured fa fa-trophy" style="margin-left:8px;"></i> Level. {{$objs->level_user}}</span>                </div>
+                    </div>
                 <div class="ap-user-info-btns">
                           </div>
             </div>
@@ -264,14 +264,8 @@
         <li><a href="{{url('profile')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="ap-questions-featured fa fa-street-view"></i> ส่วนตัวของฉัน</a></li>
 
 
-        <li><a href="{{url('user_course')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-graduation-cap"></i> คอร์สเรียน</a></li>
-        <li><a href="{{url('my_state')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class=" fa fa-bar-chart"></i> สถิติแบบฝึกหัด</a></li>
+        <li><a href="{{url('user_course')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-graduation-cap"></i> สินค้าของฉัน</a></li>
 
-        <li><a href="{{url('user_ans')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-commenting-o"></i> คำถามของฉัน</a></li>
-
-        <li><a href="{{url('user_rep')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-trophy"></i> อันดับนักเรียนยอดเยี่ยม</a></li>
-
-        <li><a href="{{url('store_transactions')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-shopping-cart"></i> ดูประวัติการสั่งซื้อ</a></li>
         <li><a href="{{url('logout')}}" class="ap-user-menu-activity-feed apicon-rss"><i class="fa fa-sign-out"></i> ออกจากระบบ</a></li>
       </ul></div>
 
@@ -415,20 +409,7 @@
   <div>
     <img class="img-responsive" src="{{url('assets/image/s-l300.jpg')}}">
   </div>
-  <a class="themes-widget" href="#/">
-    <i class="fa fa-heart-o "></i>
-    <div class="no-overflow">
-      <strong>{{Auth::user()->user_coin}} Coin</strong>
-      <p>จำนวน coin ในการดู video.</p>
-    </div>
-  </a>
-  <a class="themes-widget" href="{{url('wallet')}}">
-    <i class="fa fa-credit-card "></i>
-    <div class="no-overflow">
-      <strong>เติมเงิน Wallet</strong>
-      <p>เพิ่ม Coin สำหรับการดู video.</p>
-    </div>
-  </a>
+  
 </div>          </div>
 
 

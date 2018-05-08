@@ -116,45 +116,42 @@ return "$strDay $strMonthThai $strYear";
             <div class="">
             <div class="col-md-12 course-overall-wrapper">
               <h4>บิลเลขที่ {{$courseinfo->Oid}}</h4>
+
+
+
+              <img src="{{url('assets/uploads/'.$courseinfo->image_course)}}" class="img-responsive">
             <table class="table table-striped">
                 <tr>
                   <td>ชื่อผู้เรียน</td>
-                  <td class="text-right">{{$courseinfo->name}}</td>
+                  <td class="text-right">kimkundad</td>
                 </tr>
                 <tr>
-                  <td>คอร์สที่สั่งซื้อ</td>
+                  <td>ชื่อสินค้า</td>
                   <td class="text-right">{{$courseinfo->title_course}}</td>
-                </tr>
-                <tr>
-                  <td>ช่วงเวลาที่เรียน</td>
-                  <td class="text-right"><?php echo DateThaif($courseinfo->start_course); ?> - <?php echo DateThai($courseinfo->end_course); ?></td>
-                </tr>
-                <tr>
-                  <td>วันที่เรียน</td>
-                  <td class="text-right">{{$courseinfo->day_course}}</td>
-                </tr>
-                <tr>
-                  <td>ที่อยู่จัดส่งเอกสาร</td>
-                  <td class="text-right">{{$courseinfo->address}}</td>
-                </tr>
-                <tr>
-                  <td>เวลาที่เรียน</td>
-                  <td class="text-right">{{$courseinfo->time_course}}</td>
                 </tr>
 
                 <tr>
-                  <td><i class="fa fa-cloud-download"></i> เอกสารการเรียน</td>
-                  <td class="text-right"> มีให้ดาวน์โหลด</td>
+                  <td>จัดจำหน่ายโดย</td>
+                  <td class="text-right">lazada</td>
                 </tr>
                 <tr>
-                  <td><i class="fa fa-video-camera"></i> วีดีโอย้อนหลัง</td>
-                  <td class="text-right"> มีให้</td>
+                  <td>ตัวเลือกในการจัดส่ง</td>
+                  <td class="text-right">สามารถเก็บเงินปลายทางได้</td>
+                </tr>
+
+                <tr>
+                  <td><i class="fa fa-bus"></i> ตัวเลือกในการจัดส่ง</td>
+                  <td class="text-right"> จัดส่งแบบธรรมดา</td>
+                </tr>
+                <tr>
+                  <td><i class="fa fa-diamond"></i> การคืนสินค้า และ การรับประกัน</td>
+                  <td class="text-right"> คืนสินค้าได้ภายใน 7 วัน, ไม่มีการรับประกันสินค้า</td>
                 </tr>
 
                 <tr>
                   <br>
-                  <td><h3> ยอดชำระ</h3></td>
-                  <td class="text-right"><h3> {{$courseinfo->price_course}} บาท</h3></td>
+                  <td><h3> ยอดรวมทั้งสิ้น</h3></td>
+                  <td class="text-right"><h3> {{$courseinfo->price_course}}</h3></td>
                 </tr>
               </table>
               </div>

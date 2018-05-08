@@ -79,7 +79,7 @@ class StudentController extends Controller
            $data['count_message'] = $s;
 
         $data['objs'] = $objs;
-        $data['datahead'] = "รายชื่อนักเรียนทั้งหมด";
+        $data['datahead'] = "รายชื่อสมาชิกทั้งหมด";
         return view('admin.student.index', $data);
     }
 
@@ -329,15 +329,10 @@ class StudentController extends Controller
         ->paginate(10);
 
 
-      $coursess_suc = DB::table('history_pays')
-        ->select(
-           'history_pays.*'
-           )
-        ->where('user_id', $id)
-        ->paginate(10);
 
-        $data['header'] = "ข้อมูลนักเรียน";
-        $data['coursess_suc'] = $coursess_suc;
+
+        $data['header'] = "ข้อมูลสมาชิก";
+
         $data['coursess'] = $coursess;
         $data['score'] = $score;
         $data['objs'] = $obj;
@@ -430,7 +425,7 @@ class StudentController extends Controller
       }
 
         $data['url'] = url('admin/student/'.$id);
-        $data['header'] = "แก้ไขข้อมูลนักเรียน";
+        $data['header'] = "แก้ไขข้อมูลสมาชิก";
         $data['method'] = "put";
         $data['score'] = $score;
         $data['objs'] = $obj;
@@ -457,7 +452,6 @@ class StudentController extends Controller
             'hbd' => 'required',
             'address' => 'required',
             'phone' => 'required',
-            'user_coin' => 'required',
             'line_id' => 'required',
         ]);
 
@@ -469,7 +463,6 @@ class StudentController extends Controller
         $package->phone = $request['phone'];
         $package->hbd = $request['hbd'];
         $package->line_id = $request['line_id'];
-        $package->user_coin = $request['user_coin'];
         $package->save();
 
       return redirect(url('admin/student/'.$id.'/edit'))->with('success','Edit '.$request['name'].' successful');
@@ -483,7 +476,6 @@ class StudentController extends Controller
              'hbd' => 'required',
              'address' => 'required',
              'phone' => 'required',
-             'user_coin' => 'required',
              'line_id' => 'required',
          ]);
 
@@ -504,7 +496,6 @@ class StudentController extends Controller
          $package->phone = $request['phone'];
          $package->hbd = $request['hbd'];
          $package->line_id = $request['line_id'];
-         $package->user_coin = $request['user_coin'];
          $package->save();
          return redirect(url('admin/student/'.$id.'/edit'))->with('success','Edit '.$request['name'].' successful');
       }

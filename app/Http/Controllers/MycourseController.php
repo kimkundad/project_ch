@@ -43,7 +43,7 @@ class MycourseController extends Controller
           ->where('users.id', Auth::user()->id)
           ->first();
         //  dd($objs);
-    //  $data['objs'] = $objs;
+    //  $data['objs'] = $objs; departments
 
 
       $coursess = DB::table('submitcourses')
@@ -52,11 +52,13 @@ class MycourseController extends Controller
            'submitcourses.user_id as Uid',
            'submitcourses.id as Oid',
            'users.*',
+           'departments.*',
            'courses.*'
            )
         ->where('submitcourses.user_id', Auth::user()->id)
         ->where('submitcourses.status', 1)
         ->leftjoin('courses', 'courses.id', '=', 'submitcourses.course_id')
+        ->leftjoin('departments', 'departments.id', '=', 'courses.department_id')
         ->leftjoin('users', 'users.id', '=', 'submitcourses.user_id')
         ->get();
 
@@ -69,37 +71,24 @@ class MycourseController extends Controller
              'submitcourses.id as Oid',
              'users.*',
              'courses.*',
+             'departments.*',
              'courses.id as Cid'
              )
           ->where('submitcourses.user_id', Auth::user()->id)
           ->where('submitcourses.status', 2)
           //->orwhere('submitcourses.status', 3)
           ->leftjoin('courses', 'courses.id', '=', 'submitcourses.course_id')
+          ->leftjoin('departments', 'departments.id', '=', 'courses.department_id')
           ->leftjoin('users', 'users.id', '=', 'submitcourses.user_id')
           ->get();
 
 
 
-          $course_free = DB::table('submitcourses')
-            ->select(
-               'submitcourses.*',
-               'submitcourses.user_id as Uid',
-               'submitcourses.id as Oid',
-               'users.*',
-               'courses.*',
-               'courses.id as Cid'
-               )
-            ->where('submitcourses.user_id', Auth::user()->id)
-            ->where('submitcourses.status', 3)
-            //->orwhere('submitcourses.status', 3)
-            ->leftjoin('courses', 'courses.id', '=', 'submitcourses.course_id')
-            ->leftjoin('users', 'users.id', '=', 'submitcourses.user_id')
-            ->get();
+
 
       return view('mycourse.index')->with([
            'courseinfos' =>$coursess,
            'courseinfosfin' =>$coursefin,
-           'course_free' =>$course_free,
            'objs' => $objs
          ]);
     }

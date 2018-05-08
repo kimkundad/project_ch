@@ -108,7 +108,7 @@
                       {{ method_field($method) }}
 											{{ csrf_field() }}
 
-											<h4 class="mb-xlg">ข้อมูลส่วนตัวของนักเรียน</h4>
+											<h4 class="mb-xlg">ข้อมูลส่วนตัว</h4>
                       @if (count($errors) > 0)
                       <br>
                           <div class="alert alert-danger">
@@ -148,12 +148,7 @@
 													</div>
 												</div>
 
-												<div class="form-group">
-													<label class="col-md-3 control-label" for="profileCompany">จำนวน Coin</label>
-													<div class="col-md-8">
-														<input type="text" class="form-control" name="user_coin" value="{{ $objs->user_coin }}" >
-													</div>
-												</div>
+
 
 
 												<div class="form-group">

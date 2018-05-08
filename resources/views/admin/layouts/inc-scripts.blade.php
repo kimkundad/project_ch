@@ -39,10 +39,4 @@
 		 <script src="{{asset('/assets/javascripts/ui-elements/examples.loading.overlay.js')}}"></script>
 
 
-		 <script src="{{url('node_modules/socket.io-client/dist/socket.io.js')}}"></script>
-
-		 <script>
-		 var socket = io.connect( 'https://'+window.location.hostname+':3000' ,{secure: true});
-		// var socket = io.connect( 'http://'+window.location.hostname+':3000' );
-
-		 </script>
+	

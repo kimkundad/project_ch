@@ -68,12 +68,12 @@
                       {{ method_field($method) }}
 											{{ csrf_field() }}
 
-											<h4 class="mb-xlg">ใส่ข้อมูลคอร์ส</h4>
+											<h4 class="mb-xlg">ใส่ข้อมูลสินค้า</h4>
 
 											<fieldset>
 
                         <div class="form-group">
-													<label class="col-md-3 control-label" for="profileFirstName">ชื่อคอร์ส*</label>
+													<label class="col-md-3 control-label" for="profileFirstName">ชื่อสินค้า*</label>
 													<div class="col-md-8">
 														<input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="มินนะ โนะ นิฮงโกะ みんなの日本語 かんじ N5+N4">
 													</div>
@@ -82,11 +82,11 @@
 
 
 												<div class="form-group">
-													<label class="col-md-3 control-label" for="profileAddress">ภาควิชา*</label>
+													<label class="col-md-3 control-label" for="profileAddress">หมวดหมู่*</label>
 													<div class="col-md-8">
 														<select name="name_department" class="form-control mb-md" required>
 
-								                      <option value="">-- เลือกภาควิชา --</option>
+								                      <option value="">-- เลือกหมวดหมู่ --</option>
 								                      @foreach($department as $departments)
 													  <option value="{{$departments->id}}">{{$departments->name_department}}</option>
 													  @endforeach
@@ -94,18 +94,7 @@
 													</div>
 												</div>
 
-												<div class="form-group">
-													<label class="col-md-3 control-label" for="profileAddress">ประเภทคอร์ส*</label>
-													<div class="col-md-8">
-														<select name="typecourses" class="form-control mb-md" required>
 
-								                      <option value="">-- เลือกประเภทคอร์ส --</option>
-								                      @foreach($course as $courses)
-													  <option value="{{$courses->id}}">{{$courses->type_name}}</option>
-													  @endforeach
-								                    </select>
-													</div>
-												</div>
 
 
 
@@ -115,14 +104,14 @@
 
 
 										<div class="form-group">
-												<label class="col-md-3 control-label" for="profileFirstName">รหัสคอร์ส*</label>
+												<label class="col-md-3 control-label" for="profileFirstName">รหัสสินค้า*</label>
 														<div class="col-md-8">
 																<input type="text" class="form-control" name="code_course" value="{{ old('code_course') }}" placeholder="EN101">
 														</div>
 										</div>
 
                       <div class="form-group">
-                        <label class="col-md-3 control-label" for="profileFirstName">ราคาคอร์ส*</label>
+                        <label class="col-md-3 control-label" for="profileFirstName">ราคาสินค้า*</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" name="price" value="{{ old('price') }}" placeholder="1500">
                           </div>
@@ -136,32 +125,11 @@
                           </div>
                       </div>
 
-											<div class="form-group">
-                        <label class="col-md-3 control-label" for="profileFirstName">อัตราการสูญเสีย ดู video*</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" name="del_video" value="{{ old('del_video') }}" placeholder="1.75">
-                          </div>
-                      </div>
 
-
-                      <div class="form-group">
-                        <label class="col-md-3 control-label" for="profileFirstName">ช่วงเวลา*</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" name="time_course" value="{{ old('time_course') }}" placeholder="10:00-11:59 น.">
-                          </div>
-                      </div>
-
-
-                      <div class="form-group">
-                        <label class="col-md-3 control-label" for="profileFirstName">วันที่สอน*</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" name="day_course" value="{{ old('day_course') }}" placeholder="อาทิตย์, จันทร์">
-                          </div>
-                      </div>
 
 
                         <div class="form-group">
-                          <label class="col-md-3 control-label" for="exampleInputEmail1">รูป คอร์ส*</label>
+                          <label class="col-md-3 control-label" for="exampleInputEmail1">รูป สินค้า*</label>
                           <div class="col-md-8">
                           <div class="fileupload fileupload-new" data-provides="fileupload">
         														<div class="input-append">
@@ -181,29 +149,10 @@
                         </div>
 
 
-                        <div class="form-group">
-                          <label class="col-md-3 control-label" for="exampleInputEmail1">เนื้อหาคอร์ส CSV file*</label>
-                          <div class="col-md-8">
-                          <div class="fileupload fileupload-new" data-provides="fileupload">
-        														<div class="input-append">
-        															<div class="uneditable-input">
-        																<i class="fa fa-file fileupload-exists"></i>
-        																<span class="fileupload-preview"></span>
-        															</div>
-        															<span class="btn btn-default btn-file">
-        																<span class="fileupload-exists">Change</span>
-        																<span class="fileupload-new">Select file</span>
-        																<input type="file" name="file">
-        															</span>
-        															<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
-        														</div>
-        													</div>
-                                  </div>
-                        </div>
 
 
                         <div class="form-group">
-													<label class="col-md-3 control-label" for="profileFirstName">รายละเอียดคอร์ส*</label>
+													<label class="col-md-3 control-label" for="profileFirstName">รายละเอียดสินค้า*</label>
 													<div class="col-md-8">
                             <textarea class="form-control" name="detail" rows="4">{{ old('detail') }}</textarea>
 													</div>
@@ -211,39 +160,7 @@
 
 
 
-												<div class="form-group">
-	                        <label class="col-md-3 control-label" for="profileFirstName">ข้อมูลเวลาการเรียน*</label>
-	                            <div class="col-md-8">
-	                                <textarea class="form-control" name="time_course_text" rows="3">{{ old('time_course_text') }}</textarea>
-	                          </div>
-	                      </div>
-
-
-                  <!--      <div class="form-group">
-													<label class="col-md-3 control-label" for="profileFirstName">วันเริ่มคอร์ส*</label>
-													<div class="col-md-8">
-                            <div class="input-group">
-														<span class="input-group-addon">
-															<i class="fa fa-calendar"></i>
-														</span>
-														<input type="text" data-plugin-datepicker="" name="start_course" class="form-control">
-													</div>
-													</div>
-												</div>
-
-
-                        <div class="form-group">
-													<label class="col-md-3 control-label" for="profileFirstName">วันสิ้นสุดคอร์ส*</label>
-													<div class="col-md-8">
-                            <div class="input-group">
-														<span class="input-group-addon">
-															<i class="fa fa-calendar"></i>
-														</span>
-														<input type="text" data-plugin-datepicker="" name="end_course" class="form-control">
-													</div>
-													</div>
-												</div> -->
-
+											
 
 											</fieldset>
 
@@ -256,7 +173,7 @@
 											<div class="panel-footer">
 												<div class="row">
 													<div class="col-md-9 col-md-offset-3">
-														<button type="submit" class="btn btn-primary">เพิ่มคอร์ส</button>
+														<button type="submit" class="btn btn-primary">เพิ่มสินค้า</button>
 														<button type="reset" class="btn btn-default">Reset</button>
 													</div>
 												</div>
@@ -287,29 +204,8 @@
 
 @section('scripts')
 
-<script>
 
-socket.on( 'new_count_message', function( data ) {
 
-$( "#new_count_message" ).html( data.new_count_message );
-  console.log(data.new_count_message);
-});
-
-socket.on( 'new_message', function( data ) {
-  console.log(data.message_in);
-  if(data.check_noti === 0 ){
-    if(data.provider === 'email'){
-      $( "#messages_noti" ).append('<li><a href="{{url('admin/inbox_chat/')}}/'+ data.chat_user_id +'" class="clearfix"><figure class="image"><img src="{{url('assets/images/avatar/')}}/'+data.avatar+'" width="35" height="35" class="img-circle"></figure><span class="title">'+ data.name +'</span><span class="message">มีข้อความมาใหม่ถึงคุณ</span></a></li>');
-    }else{
-      $( "#messages_noti" ).append('<li><a href="{{url('admin/inbox_chat/')}}/'+ data.chat_user_id +'" class="clearfix"><figure class="image"><img src="//'+data.avatar+'" width="35" height="35" class="img-circle"></figure><span class="title">'+ data.name +'</span><span class="message">มีข้อความมาใหม่ถึงคุณ</span></a></li>');
-    }
-  }
-  console.log(data.check_noti);
-  $("#messages_show").scrollTop($("#messages_show")[0].scrollHeight);
-  $('#notif_audio')[0].play();
-});
-
-</script>
 <script>
 $.fn.datepicker.defaults.format = "yyyy-mm-dd";
 </script>

@@ -46,13 +46,7 @@
               </header>
               <div class="panel-body">
 
-                <div class="row">
-                  <div class="col-md-12">
-                    <a class="btn btn-default " href="{{url('admin/student/create')}}" role="button">
-                      <i class="fa fa-plus"></i> เพิ่มนักเรียน</a>
-                  </div>
 
-                </div>
                 <?php
                 function DateThai($strDate)
                 {
@@ -103,8 +97,7 @@
 
 
                       <td>
-                        <a style="float:left; margin-right:3px;" class="btn btn-success btn-xs" href="{{url('admin/inbox_chat/'.$u->id)}}"
-                          role="button"><i class="fa fa-commenting-o"></i> </a>
+                        
 
                         <a style="float:left; margin-right:3px;" class="btn btn-primary btn-xs" href="{{url('admin/student/'.$u->id)}}"
                           role="button"><i class="fa fa-wrench"></i> </a>

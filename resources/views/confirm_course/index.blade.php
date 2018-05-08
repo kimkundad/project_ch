@@ -103,41 +103,39 @@ return "$strDay $strMonthThai $strYear";
 
             <div class="">
             <div class="col-md-12 course-overall-wrapper">
-              <h4>รายละเอียด คอร์สเรียน ที่สั่งซื้อ</h4>
+              <h4>สรุปข้อมูลคำสั่งซื้อ</h4>
+              <img src="{{url('assets/uploads/'.$objs->image_course)}}" class="img-responsive">
             <table class="table table-striped">
                 <tr>
                   <td>ชื่อผู้เรียน</td>
                   <td class="text-right">kimkundad</td>
                 </tr>
                 <tr>
-                  <td>ชื่อคอร์ส</td>
+                  <td>ชื่อสินค้า</td>
                   <td class="text-right">{{$objs->title_course}}</td>
-                </tr>
-                <tr>
-                  <td>ช่วงเวลาที่เรียน</td>
-                  <td class="text-right"><?php echo DateThaif($objs->start_course); ?> - <?php echo DateThai($objs->end_course); ?></td>
-                </tr>
-                <tr>
-                  <td>วันที่เรียน</td>
-                  <td class="text-right">{{$objs->day_course}}</td>
-                </tr>
-                <tr>
-                  <td>เวลาที่เรียน</td>
-                  <td class="text-right">{{$objs->time_course}}</td>
                 </tr>
 
                 <tr>
-                  <td><i class="fa fa-cloud-download"></i> เอกสารการเรียน</td>
-                  <td class="text-right"> มีให้ดาวน์โหลด</td>
+                  <td>จัดจำหน่ายโดย</td>
+                  <td class="text-right">lazada</td>
                 </tr>
                 <tr>
-                  <td><i class="fa fa-video-camera"></i> วีดีโอย้อนหลัง</td>
-                  <td class="text-right"> มีให้</td>
+                  <td>ตัวเลือกในการจัดส่ง</td>
+                  <td class="text-right">สามารถเก็บเงินปลายทางได้</td>
+                </tr>
+
+                <tr>
+                  <td><i class="fa fa-bus"></i> ตัวเลือกในการจัดส่ง</td>
+                  <td class="text-right"> จัดส่งแบบธรรมดา</td>
+                </tr>
+                <tr>
+                  <td><i class="fa fa-diamond"></i> การคืนสินค้า และ การรับประกัน</td>
+                  <td class="text-right"> คืนสินค้าได้ภายใน 7 วัน, ไม่มีการรับประกันสินค้า</td>
                 </tr>
 
                 <tr>
                   <br>
-                  <td><h3> ยอดชำระ</h3></td>
+                  <td><h3> ยอดรวมทั้งสิ้น</h3></td>
                   <td class="text-right"><h3> @if($objs->price_course == 0)
                       Free course
                                               @else
@@ -158,20 +156,12 @@ return "$strDay $strMonthThai $strYear";
 
             <div class="">
             <div class="col-md-12 course-overall-wrapper">
-              <h4>กรอกข้อมูลติดต่อ</h4>
-              <p class="text-danger">*นักเรียนต้องกรอกข้อมูลส่วนตัวให้ครบก่อนนะ</p>
-              @if ($message = Session::get('hbd'))
-                  <span class="help-block">
-                      <strong class="text-danger">**กรอกวันเกิดนักเรียนด้วยนะจ๊ะ ไม่ใช่ ปี0000 เดือน00 วัน00</strong>
-                  </span>
-              @endif
+              <h4>ข้อมูลการจัดส่ง</h4>
+
+
               <hr>
 
-              @if($objs->type_course == 3)
-              <form action="{{url('/submit_course_free/'.$objs->id)}}" method="post" enctype="multipart/form-data" name="product">
-              @else
               <form action="{{url('/submit_course/'.$objs->id)}}" method="post" enctype="multipart/form-data" name="product">
-              @endif
 
 
                 {{ csrf_field() }}
@@ -200,34 +190,14 @@ return "$strDay $strMonthThai $strYear";
                   <input type="email" class="form-control input-sm" id="exampleInputEmail1" name="email" value="{{Auth::user()->email}}" readonly>
                 </div>
 
-                <div class="form-group">
-                  <label for="exampleInputEmail1">วันเดือนปี เกิด</label>
-                  <div class="input-group">
-                  <span class="input-group-addon">
-                    <i class="fa fa-calendar"></i>
-                  </span>
-                  <input type="text" data-plugin-datepicker="" name="hbd" value="{{Auth::user()->hbd}}"
-                  data-date-format="yyyy-mm-dd" class="form-control datepicker">
 
-                </div>
-                </div>
 
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Line ID</label>
-                  <input type="text" class="form-control input-sm" name="line" value="{{old('line', Auth::user()->line_id)}}">
-                  @if ($errors->has('line'))
-                      <span class="help-block">
-                          <strong class="text-danger">กรอกไอดีไลน์ นักเรียนด้วยนะจ๊ะ</strong>
-                      </span>
-                  @endif
-                </div>
-
-                <div class="form-group">
-                  <label for="exampleInputPassword1">ที่อยู่จัดส่งเอกสาร, หนังสือเรียน *</label>
-                  <textarea class="form-control" rows="2" name="address" id="comment">{{old('address', Auth::user()->address)}}</textarea>
+                  <label for="exampleInputPassword1">ที่อยู่การจัดส่งสินค้า *</label>
+                  <textarea class="form-control" rows="5" name="address" id="comment">{{old('address', Auth::user()->address)}}</textarea>
                   @if ($errors->has('address'))
                       <span class="help-block">
-                          <strong class="text-danger">กรอกที่อยู่ เพื่อรับเอกสารและหนังสือเรียนด้วยนะจ๊ะ </strong>
+                          <strong class="text-danger">กรอกที่อยู่การจัดส่งสินค้าด้วยนะจ๊ะ </strong>
                       </span>
                   @endif
                 </div>

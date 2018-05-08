@@ -392,25 +392,16 @@ class CourseinfoController extends Controller
       $bank = DB::table('banks')
         ->get();
 
-      $hbd = $request->get('hbd');
-
-      if($hbd == '0000-00-00'){
-          return redirect(url('confirm_course/'.$id))->with('hbd','กรอกวันเกิดนักเรียนด้วยนะจ๊ะ');
-      }
 
       $this->validate($request, [
            'name' => 'required',
-           'hbd' => 'required',
            'phone' => 'required',
            'address' => 'required',
-           'line' => 'required',
        ]);
 
        $package = Users::find(Auth::user()->id);
        $package->name = $request['name'];
-       $package->hbd = $request['hbd'];
        $package->phone = $request['phone'];
-       $package->line_id = $request['line'];
        $package->address = $request['address'];
        $package->save();
 
@@ -617,8 +608,8 @@ class CourseinfoController extends Controller
            $data_toview['data'] = $coursess;
            $data_toview['datatime'] = date("d-m-Y H:i:s");
 
-           $email_sender   = 'learnsbuy@gmail.com';
-           $email_pass     = 'Ayumusiam168';
+           $email_sender   = 'home221b@gmail.com';
+           $email_pass     = 'kid1412194';
 
        /*    $email_sender   = 'info@acmeinvestor.com';
            $email_pass     = 'Iaminfoacmeinvestor';  */
@@ -650,7 +641,7 @@ class CourseinfoController extends Controller
                            $message->from($data['sender'], 'Learnsbuy');
                            $message->to($data['sender'])
                            ->replyTo($data['sender'], 'Learnsbuy.')
-                           ->subject('ใบเสร็จสำหรับการสั่งซื้อคอร์สเรียน Learnsbuy ');
+                           ->subject('ใบเสร็จสำหรับการสั่งสินค้า ');
 
                            //echo 'Confirmation email after registration is completed.';
                        });

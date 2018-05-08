@@ -252,30 +252,19 @@ class CourseController extends Controller
     public function store(Request $request)
     {
       $image = $request->file('image');
-      $file = $request->file('file');
+
       $this->validate($request, [
            'image' => 'required|mimes:jpg,jpeg,png,gif|max:10048',
-           'file' => 'required',
            'name' => 'required',
-           'typecourses' => 'required',
            'price' => 'required',
-           'time_course' => 'required',
-           'day_course' => 'required',
            'detail' => 'required',
-           'start_course' => 'required',
-           'end_course' => 'required',
-           'time_course_text' => 'required',
            'discount' => 'required',
            'code_course' => 'required',
-           'del_video' => 'required',
            'name_department' => 'required'
        ]);
 
 
-       $destinationPath = 'assets/excel';
-       $input['file'] = time().'.'.$file->getClientOriginalExtension();
-       $request->file('file')->move($destinationPath, $input['file']);
-       $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+
 
         $destinationPath = asset('assets/uploads/');
         $img = Image::make($image->getRealPath());
@@ -285,21 +274,13 @@ class CourseController extends Controller
 
       $obj = new course();
       $obj->user_id = Auth::user()->id;
-      $obj->type_course = $request['typecourses'];
       $obj->title_course = $request['name'];
       $obj->detail_course = $request['detail'];
-      $obj->url_course = $input['file'];
       $obj->price_course = $request['price'];
-      $obj->start_course = $request['start_course'];
-      $obj->end_course = $request['end_course'];
-      $obj->time_course_text = $request['time_course_text'];
-      $obj->time_course = $request['time_course'];
-      $obj->day_course = $request['day_course'];
       $obj->image_course = $input['imagename'];
       $obj->discount = $request['discount'];
       $obj->code_course = $request['code_course'];
       $obj->department_id = $request['name_department'];
-      $obj->del_video = $request['del_video'];
       $obj->save();
 
       return redirect(url('admin/course/'))->with('success_course','เพิ่มข้อมูล '.$request['name'].' สำเร็จ');
@@ -507,70 +488,13 @@ class CourseController extends Controller
 
     public function edit($id)
     {
-      $course_message = DB::table('submitcourses')
-        ->select(
-           'submitcourses.*',
-           'submitcourses.user_id as Uid',
-           'submitcourses.id as Oid',
-           'submitcourses.created_at as Dcre',
-           'users.*',
-           'users.id as Ustudent',
-           'courses.*',
-           'banks.*',
-           'courses.id as Ucourse'
-           )
-        ->leftjoin('users', 'users.id', '=', 'submitcourses.user_id')
-        ->leftjoin('courses', 'courses.id', '=', 'submitcourses.course_id')
-        ->leftjoin('banks', 'banks.id', '=', 'submitcourses.bank_id')
-        ->where('submitcourses.status', '=', 1)
-        ->count();
-
-      $data['course_message'] = $course_message;
-
-      $message_user = DB::table('messages')
-      ->select(
-      DB::raw('messages.*, max(messages.id) as id'),
-      'users.*'
-      )
-      ->leftjoin('users', 'users.id', '=', 'messages.chat_user_id')
-      ->where('messages.chat_user_id', '>', 1)
-      ->where('messages.seen', 0)
-      ->groupBy('messages.chat_user_id')
-      ->get();
-      $data['message_user'] = $message_user;
-
-
-      $message = DB::table('messages')
-       ->select(
-       DB::raw('messages.*')
-       )
-       ->where('chat_user_id', '>', 1)
-       ->where('seen', 0)
-       ->groupBy('chat_user_id')
-       ->get();
-
-       $s = 0;
-       foreach ($message as $obj) {
-          $s++;
-
-           $obj->options = $s;
-       }
-     $data['count_message'] = $s;
-
-     $video_list = DB::table('video_lists')
-      ->select(
-      DB::raw('video_lists.*')
-      )
-      ->where('course_id', $id)
-      ->orderBy('order_sort', 'asc')
-      ->get();
 
 
       $course = typecourses::all();
       $department = department::all();
       $courseinfo = course::find($id);
       $data['department'] = $department;
-      $data['video_list'] = $video_list;
+
       $data['course'] = $course;
       $data['courseinfo'] = $courseinfo;
       $data['method'] = "put";
@@ -589,33 +513,22 @@ class CourseController extends Controller
     public function update(Request $request, $id)
     {
         $image = $request->file('image');
-        $file = $request->file('file');
 
-        if($file != NULL && $image != NULL){
+
+        if($image != NULL){
 
           $this->validate($request, [
                'image' => 'required|mimes:jpg,jpeg,png,gif|max:10048',
-               'file' => 'required',
                'name' => 'required',
-               'typecourses' => 'required',
                'price' => 'required',
-               'time_course' => 'required',
-               'day_course' => 'required',
                'detail' => 'required',
-               'start_course' => 'required',
-               'end_course' => 'required',
-               'time_course_text' => 'required',
                'discount' => 'required',
                'code_course' => 'required',
-               'del_video' => 'required',
                'name_department' => 'required',
            ]);
 
 
-           $destinationPath = 'assets/excel';
-           $input['file'] = time().'.'.$file->getClientOriginalExtension();
-           $request->file('file')->move($destinationPath, $input['file']);
-           $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+
 
             $destinationPath = asset('assets/uploads/');
             $img = Image::make($image->getRealPath());
@@ -625,115 +538,16 @@ class CourseController extends Controller
 
 
            $obj = course::find($id);
-           $obj->type_course = $request['typecourses'];
            $obj->title_course = $request['name'];
            $obj->detail_course = $request['detail'];
-           $obj->url_course = $input['file'];
            $obj->price_course = $request['price'];
-           $obj->start_course = $request['start_course'];
-           $obj->end_course = $request['end_course'];
-           $obj->time_course_text = $request['time_course_text'];
-           $obj->time_course = $request['time_course'];
-           $obj->day_course = $request['day_course'];
            $obj->image_course = $input['imagename'];
            $obj->discount = $request['discount'];
            $obj->code_course = $request['code_course'];
            $obj->department_id = $request['name_department'];
-           $obj->del_video = $request['del_video'];
            $obj->save();
 
            return redirect(url('admin/course/'.$id.'/edit'))->with('success_course','แก้ไขข้อมูล '.$request['name'].' สำเร็จ');
-
-
-        }else if($file != NULL && $image == NULL){
-
-
-          $this->validate($request, [
-               'file' => 'required',
-               'name' => 'required',
-               'typecourses' => 'required',
-               'price' => 'required',
-               'time_course' => 'required',
-               'day_course' => 'required',
-               'detail' => 'required',
-               'start_course' => 'required',
-               'end_course' => 'required',
-               'time_course_text' => 'required',
-               'del_video' => 'required',
-               'name_department' => 'required',
-           ]);
-
-
-           $destinationPath = 'assets/excel';
-           $input['file'] = time().'.'.$file->getClientOriginalExtension();
-           $request->file('file')->move($destinationPath, $input['file']);
-
-
-
-           $obj = course::find($id);
-           $obj->type_course = $request['typecourses'];
-           $obj->title_course = $request['name'];
-           $obj->detail_course = $request['detail'];
-           $obj->url_course = $input['file'];
-           $obj->price_course = $request['price'];
-           $obj->start_course = $request['start_course'];
-           $obj->end_course = $request['end_course'];
-           $obj->time_course_text = $request['time_course_text'];
-           $obj->time_course = $request['time_course'];
-           $obj->day_course = $request['day_course'];
-           $obj->discount = $request['discount'];
-           $obj->code_course = $request['code_course'];
-           $obj->department_id = $request['name_department'];
-           $obj->del_video = $request['del_video'];
-           $obj->save();
-
-           return redirect(url('admin/course/'.$id.'/edit'))->with('success_course','แก้ไขข้อมูล '.$request['name'].' สำเร็จ');
-
-        }else if($file == NULL && $image != NULL){
-
-
-          $this->validate($request, [
-               'image' => 'required|mimes:jpg,jpeg,png,gif|max:10048',
-               'name' => 'required',
-               'typecourses' => 'required',
-               'price' => 'required',
-               'time_course' => 'required',
-               'day_course' => 'required',
-               'detail' => 'required',
-               'start_course' => 'required',
-               'end_course' => 'required',
-               'time_course_text' => 'required',
-               'del_video' => 'required',
-               'name_department' => 'required'
-           ]);
-
-           $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = asset('assets/uploads/');
-            $img = Image::make($image->getRealPath());
-            $img->resize(500, 500, function ($constraint) {
-            $constraint->aspectRatio();
-          })->save('assets/uploads/'.$input['imagename']);
-
-
-           $obj = course::find($id);
-           $obj->type_course = $request['typecourses'];
-           $obj->title_course = $request['name'];
-           $obj->detail_course = $request['detail'];
-           $obj->price_course = $request['price'];
-           $obj->start_course = $request['start_course'];
-           $obj->end_course = $request['end_course'];
-           $obj->time_course_text = $request['time_course_text'];
-           $obj->time_course = $request['time_course'];
-           $obj->day_course = $request['day_course'];
-           $obj->image_course = $input['imagename'];
-           $obj->discount = $request['discount'];
-           $obj->code_course = $request['code_course'];
-           $obj->department_id = $request['name_department'];
-           $obj->del_video = $request['del_video'];
-           $obj->save();
-
-           return redirect(url('admin/course/'.$id.'/edit'))->with('success_course','แก้ไขข้อมูล '.$request['name'].' สำเร็จ');
-
 
 
         }else{
@@ -741,32 +555,20 @@ class CourseController extends Controller
 
           $this->validate($request, [
                'name' => 'required',
-               'typecourses' => 'required',
                'price' => 'required',
-               'time_course' => 'required',
-               'day_course' => 'required',
                'detail' => 'required',
-               'start_course' => 'required',
-               'end_course' => 'required',
-               'time_course_text' => 'required',
-               'del_video' => 'required',
+               'discount' => 'required',
+               'code_course' => 'required',
                'name_department' => 'required',
            ]);
 
            $obj = course::find($id);
-           $obj->type_course = $request['typecourses'];
            $obj->title_course = $request['name'];
            $obj->detail_course = $request['detail'];
            $obj->price_course = $request['price'];
-           $obj->start_course = $request['start_course'];
-           $obj->end_course = $request['end_course'];
-           $obj->time_course_text = $request['time_course_text'];
-           $obj->time_course = $request['time_course'];
-           $obj->day_course = $request['day_course'];
            $obj->discount = $request['discount'];
            $obj->code_course = $request['code_course'];
            $obj->department_id = $request['name_department'];
-           $obj->del_video = $request['del_video'];
            $obj->save();
 
            return redirect(url('admin/course/'.$id.'/edit'))->with('success_course','แก้ไขข้อมูล '.$request['name'].' สำเร็จ');
@@ -790,8 +592,7 @@ class CourseController extends Controller
       $destinationPath = 'assets/uploads/'.$objs->image_course;
       File::delete($destinationPath);
 
-      $url_course = 'assets/excel/'.$objs->url_course;
-      File::delete($url_course);
+
 
       $obj = DB::table('courses')
       ->where('courses.id', $id)

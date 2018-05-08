@@ -208,7 +208,7 @@ return "$strDay $strMonthThai $strYear";
 
         <div class="col-md-12" >
 
-          <h3>ข่าวสารทาง ครูพี่โฮม</h3>
+          <h3>ข่าวสาร</h3>
           <hr>
 
           <div class="row">

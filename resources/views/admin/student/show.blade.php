@@ -83,9 +83,7 @@
 
                       <table class="table ">
                         <tbody>
-                          <tr>
-                            <td>จำนวน coin</td><td>{{$objs->user_coin}}</td>
-                          </tr>
+
                           <tr>
                             <td>ชื่อของคุณ</td><td>{{$objs->name}}</td>
                           </tr>
@@ -95,9 +93,7 @@
                             <tr>
                             <td>เบอร์โทร</td><td>{{$objs->phone}}</td>
                             </tr>
-														<tr>
-                            <td>Coin</td><td>{{$objs->user_coin}}</td>
-                            </tr>
+
                             <tr>
                             <td>ID Line</td><td>{{$objs->line_id}}</td>
                             </tr>
@@ -150,7 +146,7 @@
 
 
 
- 											<h4 class="mb-xlg">คอร์สที่ลงทะเบียนเรียน</h4>
+ 											<h4 class="mb-xlg">สินค้าที่เคยสั่งซื้อ</h4>
 
                        <table class="table ">
                          <thead>
@@ -181,46 +177,7 @@
 
 
 
-              <div class="tabs">
 
-								<div class="tab-content">
-
-									<div id="edit" class="tab-pane active">
-
-
-
-											<h4 class="mb-xlg">ประวัติร้านค้าและการสั่งซื้อ</h4>
-
-                      <table class="table ">
-                        <thead>
-                          <tr>
-                            <th>รายการที่ทำ</th>
-                            <th>จำนวนเงิน</th>
-                            <th>วันที่</th>
-
-                          </tr>
-                        </thead>
-                        <tbody>
-                          @if($coursess_suc)
-                          @foreach($coursess_suc as $suc)
-                          <tr>
-                            <td>
-                              {{$suc->name}}
-
-                              </td>
-                            <td>{{$suc->money}}</td>
-                            <td><?php echo DateThai($suc->created_at); ?></td>
-                          </tr>
-                          @endforeach
-                          @endif
-                        </tbody>
-                      </table>
-                      {{ $coursess_suc->links() }}
-
-
-									</div>
-								</div>
-							</div>
 
 
 

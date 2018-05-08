@@ -42,7 +42,7 @@ html.no-overflowscrolling .nano > .nano-pane > .nano-slider {
 									<li {{ (Request::is('admin/student*') ? 'class=nav-expanded' : '') }} >
 										<a href="{{url('admin/student/')}}" >
 											<i class="fa fa-graduation-cap " aria-hidden="true"></i>
-											<span>รายชื่อนักเรียน</span>
+											<span>รายชื่อสมาชิก</span>
 										</a>
 									</li>
 									<li {{ (Request::is('admin/course*') ? 'class=nav-expanded' : '') }}
@@ -51,30 +51,18 @@ html.no-overflowscrolling .nano > .nano-pane > .nano-slider {
                   {{ (Request::is('admin/category*') ? 'class=nav-expanded' : '') }}>
 										<a href="{{url('admin/course/')}}" >
 											<i class="fa fa-cube" aria-hidden="true"></i>
-											<span>คอร์สเรียน</span>
+											<span>สินค้า</span>
 										</a>
 									</li>
 
                   <li {{ (Request::is('admin/department*') ? 'class=nav-expanded' : '') }} >
 										<a href="{{url('admin/department/')}}" >
 											<i class="fa fa-flag" aria-hidden="true"></i>
-											<span>ภาควิชา</span>
+											<span>หมวดหมู่</span>
 										</a>
 									</li>
 
-                  <li {{ (Request::is('admin/card_money*') ? 'class=nav-expanded' : '') }} >
-										<a href="{{url('admin/card_money/')}}" >
-											<i class="fa fa-credit-card" aria-hidden="true"></i>
-											<span>บัตรเติมเงิน</span>
-										</a>
-									</li>
 
-                  <li {{ (Request::is('admin/wallet*') ? 'class=nav-expanded' : '') }} >
-										<a href="{{url('admin/wallet/')}}" >
-											<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
-											<span>คำสั่งซื้อบัตรเติมเงิน</span>
-										</a>
-									</li>
 
                   <li {{ (Request::is('admin/order_shop*') ? 'class=nav-expanded' : '') }} >
 										<a href="{{url('admin/order_shop/')}}" >
@@ -86,23 +74,13 @@ html.no-overflowscrolling .nano > .nano-pane > .nano-slider {
                   <li {{ (Request::is('admin/play_student*') ? 'class=nav-expanded' : '') }} >
 										<a href="{{url('admin/play_student/')}}" >
 											<i class="fa fa-address-book-o" aria-hidden="true"></i>
-											<span>คอร์ส-นักเรียน</span>
+											<span>รายการสั่งซื้อ</span>
 										</a>
 									</li>
 
-                  <li {{ (Request::is('admin/free_course*') ? 'class=nav-expanded' : '') }} >
-										<a href="{{url('admin/free_course/')}}" >
-											<i class="fa fa-paw" aria-hidden="true"></i>
-											<span>สมัครเรียนฟรี</span>
-										</a>
-									</li>
 
-                  <li {{ (Request::is('admin/inbox*') ? 'class=nav-expanded' : '') }} >
-										<a href="{{url('admin/inbox/')}}" >
-											<i class="fa fa-envelope" aria-hidden="true"></i>
-											<span>Inbox</span>
-										</a>
-									</li>
+
+
 
                   <li {{ (Request::is('admin/bank*') ? 'class=nav-expanded' : '') }} >
 										<a href="{{url('admin/bank/')}}" >
@@ -118,33 +96,11 @@ html.no-overflowscrolling .nano > .nano-pane > .nano-slider {
 										</a>
 									</li>
 
-                  <li {{ (Request::is('admin/example*') ? 'class=nav-expanded' : '') }}>
-										<a href="{{url('admin/example/')}}" >
-											<i class="fa fa-question-circle" aria-hidden="true"></i>
-											<span>แบบฝึกหัด</span>
-										</a>
-									</li>
 
-                  <li {{ (Request::is('admin/example_admin*') ? 'class=nav-expanded' : '') }}>
-										<a href="{{url('admin/example_admin/')}}" >
-											<i class="fa fa-bug" aria-hidden="true"></i>
-											<span>ตรวจแบบฝึกหัด</span>
-										</a>
-									</li>
 
-									<li {{ (Request::is('admin/setting*') ? 'class=nav-expanded' : '') }} >
-										<a href="{{url('admin/setting')}}" >
-											<i class="fa fa-cog " aria-hidden="true"></i>
-											<span>ตั้งค่า</span>
-										</a>
-									</li>
 
-                  <li {{ (Request::is('admin/logsys*') ? 'class=nav-expanded' : '') }} >
-										<a href="{{url('admin/logsys')}}" >
-											<i class="fa fa-align-left" aria-hidden="true"></i>
-											<span>Log system</span>
-										</a>
-									</li>
+
+
 
 								</ul>
 

@@ -61,22 +61,21 @@ footer-menu {
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/course') }}"><i class="fa fa-graduation-cap"></i> คอร์สเรียนออนไลน์</a></li>
-                    <li><a href="{{ url('/course_teaching') }}"><i class="fa fa-podcast"></i> คอร์สสอนสด</a></li>
-                    <li><a href="{{ url('/course_free') }}"><i class="fa fa-paw"></i> คอร์สเรียนฟรี</a></li>
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
 
-                    <li><a href="{{ url('/user_reps') }}"><i class=" fa fa-trophy"></i> Ranking นักเรียน</a></li>
+
                     <li><a href="{{ url('/news') }}"><i class="fa fa-bullseye"></i> ข่าวสาร</a></li>
 
                     @if (Auth::guest())
                         <li><a href="{{url('login')}}"><i class="fa fa-sign-in"></i> Login</a></li>
                         <li><a href="{{url('register')}}"><i class="fa fa-lock"></i> Register</a></li>
                     @else
-                        <li><a href="{{ url('/user_course') }}"><i class="fa fa-graduation-cap"></i> คอร์สเรียน</a></li>
+                        <li><a href="{{ url('/user_course') }}"><i class="fa fa-cart-plus"></i> สินค้าของฉัน</a></li>
 
                         <li class="dropdown">
 
@@ -109,14 +108,14 @@ footer-menu {
 
                 <div class="col-md-4">
                     <h4>เกี่ยวกับเรา<span class="head-line"></span></h4>
-                    <p>กวดวิชาติว PAT ญี่ปุ่นและภาษาญี่ปุ่น ZA-SHI ภาษาญี่ปุ่น (ครูพี่โฮม)
-                      เกียรตินิยมอันดับ 1 (เหรียญทอง) อักษรศาสตร์ จุฬาฯ คนแรกและคนเดียวที่ได้ PAT ญี่ปุ่น 300 คะแนนเต็ม </p>
+                    <p>เป็นสมาชิกกับเราและรับสิทธิพิเศษรวมทั้งข่าวสารและโปรโมชั่นสุดพิเศษอย่างต่อเนื่อง เพราะคุณคือคนสำคัญของเรา
+                      เราจึงทุ่มเทที่จะสร้างประสบการณ์การชอปปิ้งที่ดีที่สุดให้กับคุณ หากคุณมีคำถามใดๆ พวกเรารอตอบคุณอยู่เพียงต่อสายโทรศัพท์หรืออีเมลล์หาเราเท่านั้น </p>
 
                    <ul>
-                    <li><span>Tel:</span> 02-658-3819 </li>
-                    <li><span>Email:</span> learnsbuy@gmail.com </li>
-                    <li><span>Website:</span> https://learnsbuy.com </li>
-                    <li><span>Line Id:</span> @learnsbuy, @za-shi  </li>
+                    <li><span>Tel:</span> 091-751-0192 </li>
+                    <li><span>Email:</span> home221b@gmail.com </li>
+                    <li><span>Website:</span> http://1siamsquare.org </li>
+                    <li><span>Line Id:</span> @kimkundad  </li>
                    </ul>
 
                 </div>
@@ -184,7 +183,7 @@ footer-menu {
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 
 
-      
+
 
     @yield('scripts')
 </body>

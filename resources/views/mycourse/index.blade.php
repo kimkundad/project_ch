@@ -224,11 +224,8 @@ return "$strDay $strMonthThai $strYear";
 
 
 
-        <li><a href="{{url('user_course')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="ap-questions-featured fa fa-graduation-cap"></i> คอร์สเรียน</a></li>
-        <li><a href="{{url('my_state')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class=" fa fa-bar-chart"></i> สถิติแบบฝึกหัด</a></li>
-        <li><a href="{{url('user_ans')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-commenting-o"></i> คำถามของฉัน</a></li>
-        <li><a href="{{url('store_transactions')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-shopping-cart"></i> ดูประวัติการสั่งซื้อ</a></li>
-        <li><a href="{{url('user_rep')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-trophy"></i> อันดับนักเรียนยอดเยี่ยม</a></li>
+        <li><a href="{{url('user_course')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="ap-questions-featured fa fa-graduation-cap"></i> สินค้าของฉัน</a></li>
+
 
         <li><a href="{{url('logout')}}" class="ap-user-menu-activity-feed apicon-rss"><i class="fa fa-sign-out"></i> ออกจากระบบ</a></li>
       </ul></div>
@@ -244,7 +241,7 @@ return "$strDay $strMonthThai $strYear";
 
           <div class="ap-profile-box clearfix" >
 
-            <h3 class="ap-user-page-title clearfix">คอร์สเรียนของฉัน  </h3>
+            <h3 class="ap-user-page-title clearfix">สินค้าของฉัน  </h3>
 
             <div>
 
@@ -269,7 +266,7 @@ return "$strDay $strMonthThai $strYear";
               @endforeach
 
               @else
-              <p><b>ยังไม่มีคอร์สเรียน ปรึกษาเราได้ <a href="{{url('user_ans')}}">(มาที่เมนูคำถามของฉัน)</a></b></p>
+
               @endif
 
             </div>
@@ -282,38 +279,10 @@ return "$strDay $strMonthThai $strYear";
 
 
 
-            <h3 class="ap-user-page-title clearfix">คอร์สเรียนฟรี  </h3>
 
-            <div>
-
-              @if($course_free != NULL)
-              @foreach($course_free as $coursesfinn)
-          <div style="margin-bottom:20px; padding-bottom:5px; border-bottom: 1px solid #eee;">
-          <a href="{{url('user_course_detail/'.$coursesfinn->Cid)}}"><img src="{{url('assets/uploads/'.$coursesfinn->image_course)}}" class="img-responsive" style="height:100px; float:left; margin-right:8px;"></a>
-          <a href="{{url('user_course_detail/'.$coursesfinn->Cid)}}">{{$coursesfinn->title_course}}</a><br>
-          <td class="text-right">ช่วงเวลาที่เรียน : <?php echo DateThaif($coursesfinn->start_course); ?> - <?php echo DateThai($coursesfinn->end_course); ?></td><br>
-          <td class="text-right">วันที่เรียน : {{$coursesfinn->day_course}}</td><br>
-          <td class="text-right">เวลาที่เรียน : {{$coursesfinn->time_course}}</td><br>
-          <b class="text-danger">
-            @if($coursesfinn->type_course == 3)
-              คอร์สเรียนฟรี
-            @else
-              ราคา : {{$coursesfinn->price_course}} THB
-            @endif
-
-
-          </b>
-          </div>
-              @endforeach
-
-              @else
-              <p><b>ยังไม่มีคอร์สเรียน ปรึกษาเราได้ <a href="{{url('user_ans')}}">(มาที่เมนูคำถามของฉัน)</a></b></p>
-              @endif
-
-            </div>
 
             <br>
-            <h3 class="ap-user-page-title clearfix">คอร์สที่ฉันจองไว้  </h3>
+            <h3 class="ap-user-page-title clearfix">สินค้าที่ฉันจองไว้  </h3>
 
             <div>
               @if($courseinfos != NULL)
@@ -321,9 +290,8 @@ return "$strDay $strMonthThai $strYear";
               <div style="margin-bottom:20px; padding-bottom:5px; border-bottom: 1px solid #eee;">
     <a href=""><img src="{{url('assets/uploads/'.$courses->image_course)}}" class="img-responsive" style="height:100px; float:left; margin-right:8px;"></a>
     <a href="{{url('')}}">{{$courses->title_course}}</a><br>
-    <td class="text-right">ช่วงเวลาที่เรียน : <?php echo DateThaif($courses->start_course); ?> - <?php echo DateThai($courses->end_course); ?></td><br>
-    <td class="text-right">วันที่เรียน : {{$courses->day_course}}</td><br>
-    <td class="text-right">เวลาที่เรียน : {{$courses->time_course}}</td><br>
+    <td class="text-right">หมวดหมู่ : {{$courses->name_department}}</td><br>
+
     <b class="text-danger">ราคา : {{$courses->price_course}} THB</b>
     <a type="button" style="color:#fff" class="btn btn-danger btn-xs">กำลังดำเนินการ</a>
     </div>
@@ -331,7 +299,7 @@ return "$strDay $strMonthThai $strYear";
 
 
               @else
-              <p><b>ยังไม่มีคอร์สเรียน ปรึกษาเราได้ <a href="{{url('user_ans')}}">(มาที่เมนูคำถามของฉัน)</a></b></p>
+
               @endif
 
             </div>
@@ -380,20 +348,7 @@ return "$strDay $strMonthThai $strYear";
   <div>
     <img class="img-responsive" src="{{url('assets/image/s-l300.jpg')}}">
   </div>
-  <a class="themes-widget" href="#/">
-    <i class="fa fa-heart-o "></i>
-    <div class="no-overflow">
-      <strong>{{Auth::user()->user_coin}} Coin</strong>
-      <p>จำนวน coin ในการดู video.</p>
-    </div>
-  </a>
-  <a class="themes-widget" href="{{url('wallet')}}">
-    <i class="fa fa-credit-card "></i>
-    <div class="no-overflow">
-      <strong>เติมเงิน Wallet</strong>
-      <p>เพิ่ม Coin สำหรับการดู video.</p>
-    </div>
-  </a>
+
 </div>          </div>
 
 

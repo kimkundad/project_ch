@@ -68,7 +68,6 @@ class NewsController extends Controller
         ->select(
            'blogs.*'
            )
-        ->where('b_status', 1)
         ->paginate(15);
 
       $data['objs'] = $objs;
@@ -78,7 +77,6 @@ class NewsController extends Controller
            'blogs.*',
            'blogs.image'
            )
-        ->where('b_status', 1)
         ->orderBy('view', 'desc')
         ->limit(6)
         ->get();

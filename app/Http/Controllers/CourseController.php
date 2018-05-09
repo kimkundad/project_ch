@@ -19,6 +19,7 @@ use App\category;
 use App\department;
 use App\video_list;
 
+
 class CourseController extends Controller
 {
     /**
@@ -263,7 +264,7 @@ class CourseController extends Controller
            'name_department' => 'required'
        ]);
 
-
+       $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
 
 
         $destinationPath = asset('assets/uploads/');
@@ -528,7 +529,7 @@ class CourseController extends Controller
            ]);
 
 
-
+           $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
 
             $destinationPath = asset('assets/uploads/');
             $img = Image::make($image->getRealPath());

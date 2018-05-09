@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use App\Users;
+use App\department;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -17,6 +18,8 @@ class UserprofileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function profile(){
+      $department = department::all();
+      $data['department'] = $department;
       $objs = DB::table('users')
           ->select(
           'users.*',
@@ -33,6 +36,8 @@ class UserprofileController extends Controller
     }
     public function index()
     {
+      $department = department::all();
+      $data['department'] = $department;
       $objs = DB::table('users')
           ->select(
           'users.*',

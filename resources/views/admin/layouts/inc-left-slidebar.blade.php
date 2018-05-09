@@ -74,7 +74,7 @@ html.no-overflowscrolling .nano > .nano-pane > .nano-slider {
                   <li {{ (Request::is('admin/play_student*') ? 'class=nav-expanded' : '') }} >
 										<a href="{{url('admin/play_student/')}}" >
 											<i class="fa fa-address-book-o" aria-hidden="true"></i>
-											<span>รายการสั่งซื้อ</span>
+											<span>รายการสั่งซื้อเก่า</span>
 										</a>
 									</li>
 

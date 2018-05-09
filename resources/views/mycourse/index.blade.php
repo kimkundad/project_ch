@@ -206,7 +206,7 @@ return "$strDay $strMonthThai $strYear";
                         </div>
                 <div class="ap-user-data">
           <a class="ap-user-name" href="#">{{Auth::user()->name}}</a>
-          <span class="ap-user-reputation"><i class="ap-questions-featured fa fa-trophy" style="margin-left:8px;"></i> Level. {{$objs->level_user}}</span>                </div>
+                        </div>
                 <div class="ap-user-info-btns">
                           </div>
             </div>

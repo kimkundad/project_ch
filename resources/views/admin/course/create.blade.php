@@ -6,6 +6,7 @@
 
 @section('admin.content')
 
+
 				<section role="main" class="content-body">
 
 					<header class="page-header">
@@ -160,7 +161,7 @@
 
 
 
-											
+
 
 											</fieldset>
 

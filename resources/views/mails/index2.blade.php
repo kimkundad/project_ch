@@ -12,7 +12,7 @@ repeat-y;width:100%;display:block">
 <div style="border-bottom:1px solid #ededed"></div>
 <div style="margin:20px 0px;font-size:30px;line-height:30px;text-align:left">แจ้งทำรายการสำเร็จ</div>
 <div style="margin-bottom:30px">
-<div>คุณสั่งซื้อคอร์ส {{$data->title_course}} สำเร็จ</div>
+<div>คุณสั่งซื้อสินค้า {{$data->title_course}} สำเร็จ</div>
 <br>
 <div style="margin-bottom:20px;text-align:left">
   <b>หมายเลขคำสั่งซื้อ:</b> {{$data->Oid}}<br>
@@ -108,7 +108,7 @@ repeat-y;width:100%;display:block">
 </td>
 <td style="vertical-align:top;font-size:12px;color:#555555;line-height:16px">
 <div style="font-size:14px;font-weight:bold;margin-bottom:8px">Learnsbuy</div>
-<div style="margin-bottom:8px">ติวสอบวัดระดับ N3. ครูพี่โฮมและสถาบันภาษาญี่ปุ่น ZA-SHI<wbr>ได้รับการยอมรับจริง จากองค์กร สถาบันการศึกษาภาครัฐและเอกชนอย่างต่อเนื่อง <a href="#" target="_blank" >
+<div style="margin-bottom:8px">เป็นสมาชิกกับเราและรับสิทธิพิเศษรวมทั้งข่าวสารและโปรโมชั่นสุดพิเศษอย่างต่อเนื่อง เพราะคุณคือคนสำคัญของเรา เราจึงทุ่มเทที่จะสร้างประสบการณ์การชอปปิ้งที่ดีที่สุดให้กับคุณ <a href="#" target="_blank" >
 เรียนรู้เพิ่มเติม</a><a href="#" style="font-family:'Droid Sans',Arial,sans-serif;color:#4db8ca;font-size:150%;
 text-decoration:none;padding-left:4px;line-height:12px" target="_blank" >›</a>
 </div></td></tr>
@@ -119,13 +119,12 @@ text-decoration:none;padding-left:4px;line-height:12px" target="_blank" >›</a>
 </div>
 
 <div style="margin:20px 0 40px 0;font-size:10px;color:#707070">
-ดู<a href="#" target="_blank">ประวัติการสั่งซื้อ</a>
-บน Learnsbuy ข้อมูลส่วนตัวของคุณ<br>
+
 ดู<a href="#" target="_blank" >นโยบายการคืนเงิน</a>ของ Learnsbuy และ<a href="#" target="_blank">ข้อกำหนดในการให้บริการ</a>
 </div>
 <div style="font-size:9px;color:#707070">
 
-<br>© 2017 Learnsbuy | สงวนลิขสิทธิ์<br>ZA-SHI 458/4 Siamsquare Soi 8 4th Floor, Pathumwan, Bangkok 10330</div>
+<br>© 2017 Nubthong Su Sanon Shop | สงวนลิขสิทธิ์<br>Nubthong Su Sanon Shop 458/4 Siamsquare Soi 8 4th Floor, Pathumwan, Bangkok 10330</div>
 </div></div>
 <div class="yj6qo"></div>
 <div style="background:url('{{url('assets/image/email_bottom.png')}}') no-repeat;width:100%;height:50px;display:block"></div></div></div>

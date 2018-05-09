@@ -112,17 +112,7 @@ return "$strDay $strMonthThai $strYear";
 
 
 
-            <div class="course-teacher">
-              <strong>เกี่ยวกับผู้สอน</strong>
-              <br>
-              <div class="teachet-info">
-                <img src="{{url('assets/image/15965494_10206213152167039_5353071833653529827_n.jpg')}}" class="img-circle">
-                  <div class="teacher-name">
-                    ครูพี่โฮม ภาษาญี่ปุ่น<br>
-                    <span>ติว PAT ญี่ปุ่น อันดับ 1 ของไทย</span>
-                  </div>
-              </div>
-            </div>
+
 
           </div>
 
@@ -132,30 +122,35 @@ return "$strDay $strMonthThai $strYear";
 
               <div class="col-md-8 course-overall">
                   <h4><b>{{$objs->title_course}}<span class="head-lines"></span></b></h4>
+                  <strong>รายละเอียดสินค้า</strong>
                   <p>{{$objs->detail_course}}</p>
                   <div class="course-teacher">
-                    <strong>รายละเอียดคอร์ส</strong>
+                    <strong>รายละเอียด</strong>
                     <br>
                     <table class="table table-striped table-responsive">
                       <tr>
-                        <td>ช่วงเวลาที่เรียน</td>
-                        <td class="text-right">{{$objs->time_course_text}}</td>
+                        <td>ดำเนินการโดย</td>
+                        <td class="text-right">Nubthong Su Sanon Shop</td>
                       </tr>
                       <tr>
-                        <td>วันที่เรียน</td>
-                        <td class="text-right">{{$objs->day_course}}</td>
+                        <td>จัดส่งแบบธรรมดา</td>
+                        <td class="text-right">ส่งฟรี เมื่อมียอดสั่งซื้อขั้นต่ำ 99.00 THB</td>
                       </tr>
                       <tr>
-                        <td>เวลาที่เรียน</td>
-                        <td class="text-right">{{$objs->time_course}}</td>
+                        <td>จัดส่งแบบด่วนพิเศษ</td>
+                        <td class="text-right">เพิ่มค่าบริการ ฿69.00</td>
                       </tr>
                       <tr>
-                        <td><i class="fa fa-cloud-download"></i> เอกสารการเรียน</td>
-                        <td class="text-right"> มีให้ดาวน์โหลด</td>
+                        <td>การคืนสินค้า</td>
+                        <td class="text-right"> คืนสินค้าได้ภายใน 7 วัน เหตุผลเปลี่ยนใจสามารถใช้ได้</td>
                       </tr>
                       <tr>
-                        <td><i class="fa fa-video-camera"></i> วีดีโอย้อนหลัง</td>
-                        <td class="text-right"> มีให้</td>
+                        <td> การรับประกัน</td>
+                        <td class="text-right"> มีการรับประกัน 1 ปี</td>
+                      </tr>
+                      <tr>
+                        <td> จัดจำหน่ายโดย</td>
+                        <td class="text-right"> Nubthong Su Sanon Shop</td>
                       </tr>
                     </table>
 
@@ -174,7 +169,7 @@ return "$strDay $strMonthThai $strYear";
                 @endif
 
                 <button class="btn-mini border-btn btn-fb" style="display:inline-block; text-transform:none; margin-top: 15px;">
-                    <i class="fa fa-facebook"></i> แบ่งปันคอร์สนี้                </button>
+                    <i class="fa fa-facebook"></i> แบ่งปันสินค้านี้                </button>
 
                 <br><br>
                 <hr>
@@ -188,7 +183,7 @@ return "$strDay $strMonthThai $strYear";
 
                                   </span>
                 <hr>
-                <strong>จำนวนผู้จองคอร์สเรียน</strong>
+                <strong>จำนวนผู้จองสินค้า</strong>
                 <h4 style="color:red"><i class="fa fa-user"></i> {{$count_course}}</h4>
               </div>
 

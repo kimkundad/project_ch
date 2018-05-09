@@ -15,6 +15,10 @@
 
 Route::get('/', 'HomeController@home');
 
+
+Route::get('/about', 'HomeController@about');
+
+Route::get('category_all/{id}', 'HomeController@category_all');
 Route::get('/course', 'HomeController@course');
 Route::get('/course_teaching', 'HomeController@Teaching');
 Route::get('/course_free', 'HomeController@course_free');
@@ -77,9 +81,7 @@ Route::get('/news', 'NewsController@index');
 Route::get('/news/{id}', 'NewsController@show');
 
 
-Route::get('/about', function () {
-    return view('about.index');
-});
+
 
 Route::get('/about/mobile', function () {
     return view('mobile.about_m');

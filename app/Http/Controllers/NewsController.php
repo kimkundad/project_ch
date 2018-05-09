@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\blog;
+use App\department;
 use App\Http\Requests;
 
 class NewsController extends Controller
 {
   public function index()
   {
+    $department = department::all();
+    $data['department'] = $department;
     $course_message = DB::table('submitcourses')
       ->select(
          'submitcourses.*',
@@ -190,6 +193,8 @@ class NewsController extends Controller
 
   public function show($id)
   {
+    $department = department::all();
+    $data['department'] = $department;
     $course_message = DB::table('submitcourses')
       ->select(
          'submitcourses.*',

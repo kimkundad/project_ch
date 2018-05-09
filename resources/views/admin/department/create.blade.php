@@ -14,6 +14,7 @@
 									</a>
 								</li>
 
+
 								<li><span>{{$header}}</span></li>
 							</ol>
 
@@ -73,6 +74,27 @@
 														<input type="text" class="form-control" name="name_department" value="{{ old('name_department') }}">
 														</div>
 												</div>
+
+
+												<div class="form-group">
+                          <label class="col-md-3 control-label" for="exampleInputEmail1">รูป หมวดหมู่*</label>
+                          <div class="col-md-8">
+                          <div class="fileupload fileupload-new" data-provides="fileupload">
+        														<div class="input-append">
+        															<div class="uneditable-input">
+        																<i class="fa fa-file fileupload-exists"></i>
+        																<span class="fileupload-preview"></span>
+        															</div>
+        															<span class="btn btn-default btn-file">
+        																<span class="fileupload-exists">Change</span>
+        																<span class="fileupload-new">Select file</span>
+        																<input type="file" name="image">
+        															</span>
+        															<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
+        														</div>
+        													</div>
+                                  </div>
+                        </div>
 
 
 

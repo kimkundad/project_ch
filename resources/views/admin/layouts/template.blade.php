@@ -31,7 +31,7 @@
     <section class="body">
 
 
-        <header class="header" style="background-color: #32d191 !important; background-image:none;     border-bottom: 1px solid #E9E9E6; border-bottom: 1px solid #32d191; border-top: 3px solid #32d191;">
+        <header class="header" >
                 <div class="logo-container">
                     <a href="#" class="logo pull-left">
                     <img src="{{asset('./assets/images/Learnsbuy_Logo2.png')}}" height="40"  />

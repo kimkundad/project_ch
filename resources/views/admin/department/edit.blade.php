@@ -17,6 +17,7 @@
 								<li><span>{{$header}}</span></li>
 							</ol>
 
+
 							<a class="sidebar-right-toggle" data-open="sidebar-right" ><i class="fa fa-chevron-left"></i></a>
 						</div>
 					</header>
@@ -75,7 +76,34 @@
 												</div>
 
 
+												<div class="form-group">
+													<label class="col-md-3 control-label" for="exampleInputEmail1">รูปสินค้า*</label>
+													<div class="col-md-8">
 
+												<img src="{{url('assets/image/cat/'.$objs->image_department)}}" class="img-responsive">
+																	</div>
+												</div>
+
+
+												<div class="form-group">
+                          <label class="col-md-3 control-label" for="exampleInputEmail1">รูป หมวดหมู่*</label>
+                          <div class="col-md-8">
+                          <div class="fileupload fileupload-new" data-provides="fileupload">
+        														<div class="input-append">
+        															<div class="uneditable-input">
+        																<i class="fa fa-file fileupload-exists"></i>
+        																<span class="fileupload-preview"></span>
+        															</div>
+        															<span class="btn btn-default btn-file">
+        																<span class="fileupload-exists">Change</span>
+        																<span class="fileupload-new">Select file</span>
+        																<input type="file" name="image">
+        															</span>
+        															<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
+        														</div>
+        													</div>
+                                  </div>
+                        </div>
 
 
 											</fieldset>

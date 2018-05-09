@@ -122,14 +122,7 @@ return "$strDay $strMonthThai $strYear";
                           <td>ราคาคอร์ส</td>
                           <td>{{$courseinfo->price_course}}</td>
                         </tr>
-                        <tr>
-                          <td>ช่วงเวลา</td>
-                          <td>{{$courseinfo->time_course}}</td>
-                        </tr>
-                        <tr>
-                          <td>วันที่สอน</td>
-                          <td>{{$courseinfo->day_course}}</td>
-                        </tr>
+
                         <tr>
                           <td>ช่วงเวลาที่เรียน</td>
                           <td><?php echo DateThaif($courseinfo->start_course); ?> - <?php echo DateThai($courseinfo->end_course); ?></td>
@@ -150,29 +143,8 @@ return "$strDay $strMonthThai $strYear";
                             {{ csrf_field() }}
                             <input type="hidden" class="form-control" name="id"  value="{{$courseinfo->Oid}}" >
 
-                            <div class="form-group">
-  												<label class="col-md-3 control-label">วันหมดอายุ</label>
-  												<div class="col-md-6">
-  																										<div class="input-group">
-  														<span class="input-group-addon">
-  															<i class="fa fa-calendar"></i>
-  														</span>
-                              @if($courseinfo->end_day == NULL)
-                              <input type="text" data-plugin-datepicker="" name="end_day" class="form-control">
-                              @else
-                              <input type="text" data-plugin-datepicker="" name="end_day" value="{{$courseinfo->end_day}}" class="form-control">
-                              @endif
 
-  													</div>
-  												</div>
-  											</div>
 
-                            <div class="form-group">
-                              <label class="col-md-3 control-label" for="profileFirstName">จำนวนชั่วโมง*</label>
-                                  <div class="col-md-8">
-                                      <input type="text" class="form-control" name="hrcourse" value="{{$courseinfo->hrcourse}}" placeholder="1500">
-                                </div>
-                            </div>
 
                             <div class="form-group">
     													<label class="col-md-3 control-label" for="profileAddress">สถานะ*</label>

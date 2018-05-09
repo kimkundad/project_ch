@@ -225,9 +225,7 @@ class Course_studentController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request, [
-        'end_day' => 'required',
    'status' => 'required',
-   'hrcourse' => 'required'
     ]);
 
 
@@ -240,37 +238,11 @@ class Course_studentController extends Controller
         )
         ->where('id', $id)
         ->update(array(
-          'end_day' => $request['end_day'],
-          'status' => $request['status'],
-          'hrcourse' => $request['hrcourse']
+          'status' => $request['status']
         ));
 
 
         $status_user = $request->get('status');
-
-
-        if($status_user == 2){
-
-
-          $coursess = DB::table('submitcourses')
-            ->select(
-               'submitcourses.*',
-               'submitcourses.user_id as Uid',
-               'submitcourses.id as Oid',
-               'users.*',
-               'banks.*',
-               'courses.*'
-               )
-            ->where('submitcourses.id', $id)
-            ->leftjoin('users', 'users.id', '=', 'submitcourses.user_id')
-            ->leftjoin('courses', 'courses.id', '=', 'submitcourses.course_id')
-            ->leftjoin('banks', 'banks.id', '=', 'submitcourses.bank_id')
-            ->first();
-
-
-
-
-       }
 
        return redirect(url('admin/play_student/'.$id.'/edit'))->with('edit_order','แก้ไขข้อมูล สำเร็จ');
     }

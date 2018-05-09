@@ -231,11 +231,7 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request, [
-   'end_day' => 'required',
-   'status' => 'required',
-   'hrcourse' => 'required',
-   'course_tran' => 'required',
-   'money_tran' => 'required'
+     'status' => 'required'
     ]);
 
 
@@ -250,90 +246,8 @@ class OrderController extends Controller
         )
         ->where('id', $id)
         ->update(array(
-          'end_day' => $request['end_day'],
           'status' => $request['status']
         ));
-
-
-        $users_count = DB::table('history_pays')
-                ->where('user_id', $request['user_id'])
-                ->count();
-
-        if($users_count > 0){
-
-
-          $user = DB::table('users')
-              ->select(
-              'users.*'
-              )
-              ->where('users.id', $request['user_id'])
-              ->first();
-
-      /*    $users_coin_sum = DB::table('history_pays')
-                  ->select(DB::raw('SUM(history_pays.total_coin) as total_sales'))
-                  ->where('history_pays.type_pay', 1)
-                  ->orwhere('history_pays.type_pay', 2)
-                  ->get(); */
-
-                  //dd($users_coin_sum);
-
-                $obj = new history_pay();
-                $obj->name = 'ซื้อคอร์สเรียน : '.$request['course_tran'];
-                $obj->type_pay = 1;
-                $obj->money = $request['money_tran'];
-                $obj->total_coin = $request['hrcourse'];
-                $obj->user_id = $request['user_id'];
-                $obj->save();
-
-                $coin_sum = $user->user_coin + $request['hrcourse'];
-
-                  $user_coin = DB::table('users')
-                      ->select(
-                      'users.*'
-                      )
-                      ->where('id', $request['user_id'])
-                      ->update(array(
-                        'user_coin' => $coin_sum
-                      ));
-
-
-
-
-
-        }else{
-
-
-
-
-
-                $obj = new history_pay();
-                $obj->name = 'ซื้อคอร์สเรียน : '.$request['course_tran'];
-                $obj->type_pay = 1;
-                $obj->money = $request['money_tran'];
-                $obj->total_coin = $request['hrcourse'];
-                $obj->user_id = $request['user_id'];
-                $obj->save();
-
-
-
-                $user_coin = DB::table('users')
-                    ->select(
-                    'users.*'
-                    )
-                    ->where('id', $request['user_id'])
-                    ->update(array(
-                      'user_coin' => $request['hrcourse']
-                    ));
-
-
-
-        }
-
-
-
-
-
-
 
 
 
@@ -341,7 +255,7 @@ class OrderController extends Controller
         $status_user = $request->get('status');
 
 
-        if($status_user == 2){
+
 
 
           $coursess = DB::table('submitcourses')
@@ -371,8 +285,8 @@ class OrderController extends Controller
           $data_toview['data'] = $coursess;
           $data_toview['datatime'] = date("d-m-Y H:i:s");
 
-            $email_sender   = 'learnsbuy@gmail.com';
-            $email_pass     = 'Ayumusiam168';
+            $email_sender   = 'home221b@gmail.com';
+            $email_pass     = 'kid1412194';
 
         /*    $email_sender   = 'info@acmeinvestor.com';
             $email_pass     = 'Iaminfoacmeinvestor';  */
@@ -401,10 +315,10 @@ class OrderController extends Controller
 
                         Mail::send('mails.index2', $data_toview, function($message) use ($data)
                         {
-                            $message->from($data['sender'], 'Learnsbuy');
+                            $message->from($data['sender'], 'Nubthong Su Sanon Shop');
                             $message->to($data['sender'])
-                            ->replyTo($data['sender'], 'Learnsbuy.')
-                            ->subject('ทำรายการสำหรับการสั่งซื้อคอร์สเรียน Learnsbuy สำเร็จ');
+                            ->replyTo($data['sender'], 'Nubthong Su Sanon Shop.')
+                            ->subject('ทำรายการสำหรับการสั่งซื้อสินค้า Nubthong Su Sanon Shop สำเร็จ');
 
                             //echo 'Confirmation email after registration is completed.';
                         });
@@ -427,7 +341,7 @@ class OrderController extends Controller
 
 
 
-       }
+
 
        return redirect(url('admin/order_shop/'.$id.'/edit'))->with('edit_order','แก้ไขข้อมูล สำเร็จ');
     }

@@ -123,17 +123,10 @@ return "$strDay $strMonthThai $strYear";
                           <td>{{$courseinfo->date_tran}} {{$courseinfo->time_tran}}</td>
                         </tr>
                         <tr>
-                          <td>ราคาคอร์ส</td>
+                          <td>ราคาสินค้า</td>
                           <td>{{$courseinfo->price_course}}</td>
                         </tr>
-                        <tr>
-                          <td>ช่วงเวลา</td>
-                          <td>{{$courseinfo->time_course}}</td>
-                        </tr>
-                        <tr>
-                          <td>วันที่สอน</td>
-                          <td>{{$courseinfo->day_course}}</td>
-                        </tr>
+                      
                         <tr>
                           <td>ช่วงเวลาที่เรียน</td>
                           <td><?php echo DateThaif($courseinfo->start_course); ?> - <?php echo DateThai($courseinfo->end_course); ?></td>
@@ -157,30 +150,9 @@ return "$strDay $strMonthThai $strYear";
                             <input type="hidden" class="form-control" name="money_tran"  value="{{$courseinfo->money_tran}}" >
                             <input type="hidden" class="form-control" name="course_tran"  value="{{$courseinfo->title_course}}" >
 
-                            <div class="form-group">
-  												<label class="col-md-3 control-label">วันหมดอายุ</label>
-  												<div class="col-md-6">
-  																										<div class="input-group">
-  														<span class="input-group-addon">
-  															<i class="fa fa-calendar"></i>
-  														</span>
-                              @if($courseinfo->end_day == NULL)
-                              <input type="text" data-plugin-datepicker="" name="end_day" class="form-control">
-                              @else
-                              <input type="text" data-plugin-datepicker="" name="end_day" value="{{$courseinfo->end_day}}" class="form-control">
-                              @endif
-
-  													</div>
-  												</div>
-  											</div>
 
 
-                            <div class="form-group">
-                              <label class="col-md-3 control-label" for="profileFirstName">จำนวน Coin*</label>
-                                  <div class="col-md-8">
-                                      <input type="text" class="form-control" name="hrcourse" placeholder="1500">
-                                </div>
-                            </div>
+
 
                             <div class="form-group">
     													<label class="col-md-3 control-label" for="profileAddress">สถานะ*</label>
@@ -200,7 +172,7 @@ return "$strDay $strMonthThai $strYear";
                             <div class="panel-footer">
       												<div class="row">
       													<div class="col-md-9 col-md-offset-3">
-      														<button type="submit" class="btn btn-primary">เพิ่มคอร์ส</button>
+      														<button type="submit" class="btn btn-primary">เพิ่มสินค้า</button>
       														<button type="reset" class="btn btn-default">Reset</button>
       													</div>
       												</div>

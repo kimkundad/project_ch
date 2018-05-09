@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use App\course;
+use App\department;
 use App\typecourses;
 use App\Http\Requests;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -32,6 +33,8 @@ class MycourseController extends Controller
      */
     public function index()
     {
+      $department = department::all();
+      $data['department'] = $department;
 
       $objs = DB::table('users')
           ->select(
@@ -89,12 +92,16 @@ class MycourseController extends Controller
       return view('mycourse.index')->with([
            'courseinfos' =>$coursess,
            'courseinfosfin' =>$coursefin,
-           'objs' => $objs
+           'objs' => $objs,
+           'department' =>$department
          ]);
     }
 
 
     public function store_transactions(){
+
+      $department = department::all();
+      $data['department'] = $department;
 
       $coursess_suc = DB::table('history_pays')
         ->select(
@@ -138,6 +145,9 @@ class MycourseController extends Controller
      */
     public function show($id)
     {
+
+      $department = department::all();
+      $data['department'] = $department;
       $objs = DB::table('users')
           ->select(
           'users.*',

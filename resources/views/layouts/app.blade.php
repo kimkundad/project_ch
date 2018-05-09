@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Learnsbuy เรียนภาษาญี่ปุ่นออนไลน์ง่ายๆ รวดเร็วกับครูพี่โฮม</title>
+    <title>Nubthong Su Sanon Shop ซื้อของออนไลน์</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -53,14 +53,28 @@ footer-menu {
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{url('assets/image/logo/Learnsbuy_WebLogo_300.png')}}" height="45" title="logo">
+                    <img src="{{url('assets/image/logo/learnsbuy_WebLogo_300.png')}}" height="45" title="logo">
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/course') }}"><i class="fa fa-graduation-cap"></i> คอร์สเรียนออนไลน์</a></li>
+
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="font-size:15px;">
+                        <span style="font-size:14px;">
+                          หมวดหมู่สินค้า
+                          <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                    @if(isset($department))
+                    @foreach($department as $departments)
+                    <li><a href="{{ url('category_all/'.$departments->id) }}"> {{$departments->name_department}}</a></li>
+                    @endforeach
+                    @endif
+                    </ul>
+                  </li>
 
                 </ul>
 
@@ -133,8 +147,7 @@ footer-menu {
                 <div class="col-md-2">
                     <h4>บริการ<span class="head-line"></span></h4>
                     <ul>
-                    <li><a href="{{ url('/wallet') }}" style="color: #ccc;"><i class="fa fa-credit-card"></i> เติมเงิน wallet</a></li>
-                    <li><a href="{{ url('/') }}" style="color: #ccc;"><i class="fa fa-book "></i> คู่มือใช้งาน</a></li>
+
 
                     </ul>
                 </div>
@@ -145,20 +158,20 @@ footer-menu {
 
                 <ul class="social-icons">
                     <li>
-                        <a class="facebook" href="https://www.facebook.com/learnsbuy"><i class="fa fa-facebook"></i></a>
+                        <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
                     </li>
                     <li>
                         <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
                     </li>
                     <li>
-                        <a class="twitter" href="https://twitter.com/learnsbuy"><i class="fa fa-twitter"></i></a>
+                        <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
                     </li>
                     <li>
                         <a class="google" href="#"><i class="fa fa-youtube"></i></a>
                     </li>
 
                     <li>
-                        <a class="facebook" href="https://www.instagram.com/learnsbuy/"><i class="fa fa-instagram"></i></a>
+                        <a class="facebook" href="#"><i class="fa fa-instagram"></i></a>
                     </li>
 
 
@@ -167,7 +180,7 @@ footer-menu {
                 </div>
 
                 <div class="col-lg-12" style="border-top: 1px solid rgba(255,255,255,.06); margin-top:30px;">
-                    <p class="copyright small" style="padding-top: 15px; color: #ccc;">เว็บไซต์ learnsbuy แสดงผลได้ดีกับบราวเซอร์  <img src="{{url('assets/image/chrome-512.png')}}" style="height:25px;"> <img src="{{url('assets/image/appicns_Firefox.png')}}" style="height:25px;"> <img src="{{url('assets/image/500px-Internet_Explorer_4_and_5_logo.svg.png')}}" style="height:25px;"> <img src="{{url('assets/image/safari_PNG28.png')}}" style="height:25px;">  เวอร์ชั่นล่าสุด</p>
+                    <p class="copyright small" style="padding-top: 15px; color: #ccc;">เว็บไซต์ Nubthong Su Sanon Shop แสดงผลได้ดีกับบราวเซอร์  <img src="{{url('assets/image/chrome-512.png')}}" style="height:25px;"> <img src="{{url('assets/image/appicns_Firefox.png')}}" style="height:25px;"> <img src="{{url('assets/image/500px-Internet_Explorer_4_and_5_logo.svg.png')}}" style="height:25px;"> <img src="{{url('assets/image/safari_PNG28.png')}}" style="height:25px;">  เวอร์ชั่นล่าสุด</p>
                     <p class="copyright small" style="padding: 3px 0; color: #ccc;">Copyright © Your Company 2014. All Rights Reserved. Check our <a href="{{url('terms')}}" style="font-size: 14px; color: #ccc;">Terms of service.</a> To learn more about how we use your information, see our <a href="{{url('privacypolicy')}}" style="color: #ccc; font-size: 14px;">Privacy Policy.</a></p>
                 </div>
             </div>

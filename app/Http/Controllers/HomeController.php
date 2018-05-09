@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\course;
 use App\Http\Requests;
+use App\department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,20 +32,61 @@ class HomeController extends Controller
     }
 
 
+    public function about(){
+      $department = department::all();
+      $data['department'] = $department;
+      return view('about.index', $data);
+    }
+
+
     public function home()
     {
+      $department = department::all();
+      $data['department'] = $department;
+
       $objs = DB::table('courses')
           ->select(
           'courses.*',
           'courses.id as A',
-          'typecourses.*'
+          'departments.*'
           )
-          ->leftjoin('typecourses', 'typecourses.id', '=', 'courses.type_course')
+          ->leftjoin('departments', 'departments.id', '=', 'courses.department_id')
           ->limit(8)
           ->get();
 
       $data['objs'] = $objs;
       return view('welcome', $data);
+    }
+
+
+    public function category_all($id){
+
+
+      $department = department::all();
+      $data['department'] = $department;
+
+      $department_get = DB::table('departments')
+          ->select(
+          'departments.*'
+          )
+          ->where('id', $id)
+          ->first();
+          $data['department_get'] = $department_get;
+
+      $objs = DB::table('courses')
+          ->select(
+          'courses.*',
+          'courses.id as A',
+          'departments.*'
+          )
+          ->leftjoin('departments', 'departments.id', '=', 'courses.department_id')
+          ->where('courses.department_id', $id)
+          ->get();
+
+      $data['objs'] = $objs;
+      return view('course.index', $data);
+
+
     }
 
     public function course()

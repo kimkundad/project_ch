@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
+use Hash;
 use App\department;
 use App\Http\Requests;
+use File;
+use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\DB;
 
 class DepartmentController extends Controller
@@ -143,8 +147,22 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
+      $image = $request->file('image');
+
+      $this->validate($request, [
+           'image' => 'required|mimes:jpg,jpeg,png,gif|max:10048'
+       ]);
+
+       $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+       $destinationPath = asset('assets/image/cat/');
+       $img = Image::make($image->getRealPath());
+       $img->resize(300, 300, function ($constraint) {
+       $constraint->aspectRatio();
+     })->save('assets/image/cat/'.$input['imagename']);
+
       $package = new department();
       $package->name_department = $request['name_department'];
+      $package->image_department = $input['imagename'];
       $package->save();
       return redirect(url('admin/department'))->with('success','เพิ่ม'.$request['name_department'].' เสร็จเรียบร้อยแล้ว');
     }
@@ -187,7 +205,7 @@ class DepartmentController extends Controller
         ->count();
 
       $data['course_message'] = $course_message;
-      
+
       $message_user = DB::table('messages')
       ->select(
       DB::raw('messages.*, max(messages.id) as id'),
@@ -235,9 +253,31 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $package = department::find($id);
-       $package->name_department = $request['name_department'];
-       $package->save();
+
+      $image = $request->file('image');
+
+      if($image != NULL){
+        $input['imagename'] = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = asset('assets/image/cat/');
+        $img = Image::make($image->getRealPath());
+        $img->resize(300, 300, function ($constraint) {
+        $constraint->aspectRatio();
+      })->save('assets/image/cat/'.$input['imagename']);
+
+        $package = department::find($id);
+         $package->name_department = $request['name_department'];
+         $package->image_department = $input['imagename'];
+         $package->save();
+
+      }else{
+
+        $package = department::find($id);
+         $package->name_department = $request['name_department'];
+         $package->save();
+
+      }
+
+
        return redirect(url('admin/department'))->with('success','Edit successful');
     }
 
@@ -249,6 +289,15 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
+
+      $objs = DB::table('departments')
+      ->where('departments.id', $id)
+      ->first();
+
+      $destinationPath = 'assets/image/cat/'.$objs->image_department;
+      File::delete($destinationPath);
+
+
       $obj = department::find($id);
       $obj->delete();
       return redirect(url('admin/department'))->with('delete','Delete successful');

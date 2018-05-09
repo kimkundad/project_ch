@@ -66,10 +66,10 @@ return "$strDay $strMonthThai $strYear";
                   <thead>
                     <tr>
 
-                      <th>นักเรียน</th>
-                      <th>คอร์ส</th>
-                      <th>หมดอายุ</th>
-                      <th>เวลา</th>
+                      <th>ชื่อสมาชิก</th>
+                      <th>สินค้า</th>
+                      <th>จำนวนเงิน</th>
+
                       <th>วันที่โอน</th>
                       <th>สั่งซื้อวันที่</th>
                       <th>Action</th>
@@ -82,8 +82,8 @@ return "$strDay $strMonthThai $strYear";
 
                       <td><a href="{{url('admin/student/'.$u->Ustudent.'/edit')}}" target="_blank">{{$u->name}}</a></td>
                       <td><a href="{{url('admin/course/'.$u->Ucourse.'/edit')}}" target="_blank">{{$u->title_course}}</a></td>
-                      <td><?php echo DateThai($u->end_day); ?></td>
-                      <td>{{$u->hrcourse}}</td>
+                      <td>{{$u->money_tran}}</td>
+              
                       <td>{{$u->date_tran}}</td>
                       <td>{{$u->Dcre}}</td>
 

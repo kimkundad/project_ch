@@ -8,7 +8,7 @@
 <div class="container" >
     <div class="row">
         <div class="col-md-12 " >
-          <h3>คอร์สเรียนทั้งหมด</h3>
+          <h3>{{$department_get->name_department}}</h3>
           <hr>
           <div class="body-project">
 
@@ -27,12 +27,12 @@
                                     <a href="{{url('/courseinfo/'.$obj->A)}}" data-dismiss="modal" data-toggle="modal" data-target="#show_detail54"> {{$obj->title_course}}</a>
                                 </div>
                                 <div class="descript" style="border-bottom: 1px dashed #999;">
-                                    {{$obj->type_name}} เรียน {{$obj->day_course}}, {{$obj->time_course}}
+                                    {{$obj->name_department}}
                                 </div>
 
                                 <div class="descript" style="height: 20px;">
                                   <div class="descript-t">
-                                  <div class="postMetaInline-authorLockup">
+                                  <div class="postMetaInline-authorLockup" style="    float: right;">
                                     <div >
                                       <span class="readingPrice">
                                     <span class="text-primary">{{$obj->code_course}}</span>, ฿ {{$obj->price_course}} บาท

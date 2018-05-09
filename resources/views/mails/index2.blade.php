@@ -2,7 +2,7 @@
 <div style="width:590px">
 <div style="background:url('{{url('assets/image/email_top.png')}}') no-repeat;width:100%;height:75px;display:block">
 <div style="padding-top:30px;padding-left:50px;padding-right:50px">
-<a href="#" target="_blank" ><img src="{{url('assets/images/e-nihongo.png')}}" alt=""
+<a href="#" target="_blank" ><img src="{{url('assets/image/logo/Learnsbuy_WebLogo_300.png')}}" alt=""
   style="border:none; height:42px;" ></a>
 </div>
 </div>
@@ -103,7 +103,7 @@ repeat-y;width:100%;display:block">
 <tr>
 <td style="vertical-align:top">
 <div style="margin-right:8px;margin-top:3px">
-<img src="{{url('assets/image/logo/Learnsbuy_WebLogo_300.png')}}}" style="border:none; height:40px;" class="CToWUd">
+<img src="{{url('assets/image/logo/Learnsbuy_WebLogo_300.png')}}" style="border:none; height:40px;" class="CToWUd">
 </div>
 </td>
 <td style="vertical-align:top;font-size:12px;color:#555555;line-height:16px">

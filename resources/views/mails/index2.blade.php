@@ -103,11 +103,11 @@ repeat-y;width:100%;display:block">
 <tr>
 <td style="vertical-align:top">
 <div style="margin-right:8px;margin-top:3px">
-<img src="{{url('assets/images/e-nihongo.png')}}" style="border:none; height:40px;" class="CToWUd">
+<img src="{{url('assets/image/logo/Learnsbuy_WebLogo_300.png')}}}" style="border:none; height:40px;" class="CToWUd">
 </div>
 </td>
 <td style="vertical-align:top;font-size:12px;color:#555555;line-height:16px">
-<div style="font-size:14px;font-weight:bold;margin-bottom:8px">Learnsbuy</div>
+<div style="font-size:14px;font-weight:bold;margin-bottom:8px">Nubthong Su Sanon Shop</div>
 <div style="margin-bottom:8px">เป็นสมาชิกกับเราและรับสิทธิพิเศษรวมทั้งข่าวสารและโปรโมชั่นสุดพิเศษอย่างต่อเนื่อง เพราะคุณคือคนสำคัญของเรา เราจึงทุ่มเทที่จะสร้างประสบการณ์การชอปปิ้งที่ดีที่สุดให้กับคุณ <a href="#" target="_blank" >
 เรียนรู้เพิ่มเติม</a><a href="#" style="font-family:'Droid Sans',Arial,sans-serif;color:#4db8ca;font-size:150%;
 text-decoration:none;padding-left:4px;line-height:12px" target="_blank" >›</a>
@@ -120,7 +120,7 @@ text-decoration:none;padding-left:4px;line-height:12px" target="_blank" >›</a>
 
 <div style="margin:20px 0 40px 0;font-size:10px;color:#707070">
 
-ดู<a href="#" target="_blank" >นโยบายการคืนเงิน</a>ของ Learnsbuy และ<a href="#" target="_blank">ข้อกำหนดในการให้บริการ</a>
+ดู<a href="#" target="_blank" >นโยบายการคืนเงิน</a>ของ Nubthong Su Sanon Shop และ<a href="#" target="_blank">ข้อกำหนดในการให้บริการ</a>
 </div>
 <div style="font-size:9px;color:#707070">
 

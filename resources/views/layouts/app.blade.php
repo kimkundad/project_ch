@@ -116,7 +116,7 @@ footer-menu {
     <footer>
 
 
-        <div class="footer-menu" style="background: url({{url('assets/image/escheresque_ste.png')}}); ">
+        <div class="footer-menu" style="background: url({{secure_url('assets/image/escheresque_ste.png')}}); ">
         <div class="container" >
             <div class="row">
 

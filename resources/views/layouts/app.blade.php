@@ -53,7 +53,7 @@ footer-menu {
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{url('assets/image/logo/learnsbuy_WebLogo_300.png')}}" height="45" title="logo">
+                    <img src="{{url('assets/image/logo/Learnsbuy_WebLogo_300.png')}}" height="45" title="logo">
                 </a>
             </div>
 

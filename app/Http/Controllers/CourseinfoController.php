@@ -121,7 +121,8 @@ class CourseinfoController extends Controller
            'courseinfos' =>$coursess,
            'count_course' => $count_course,
            'comment_course' => $comment_course,
-           'objs' => $courseinfo
+           'objs' => $courseinfo,
+           'department' => $department
          ]);
     }
 

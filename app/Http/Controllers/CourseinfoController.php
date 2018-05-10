@@ -11,6 +11,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\DB;
 use Excel;
 use File;
+use App\department;
 use App\Users;
 use App\submitcourse;
 use App\bank;
@@ -63,6 +64,8 @@ class CourseinfoController extends Controller
      */
     public function show($id)
     {
+      $department = department::all();
+      $data['department'] = $department;
       $courseinfo = course::find($id);
 
       $count_course = DB::table('submitcourses')
@@ -126,6 +129,8 @@ class CourseinfoController extends Controller
 
     public function checkmycourse($id)
     {
+      $department = department::all();
+      $data['department'] = $department;
       $bank = DB::table('banks')
         ->get();
       $getc = DB::table('submitcourses')
@@ -167,6 +172,9 @@ class CourseinfoController extends Controller
 
     public function confirm_course($id)
     {
+      $department = department::all();
+      $data['department'] = $department;
+
       $courseinfo = course::find($id);
 
       $count_course = DB::table('submitcourses')
@@ -229,7 +237,8 @@ class CourseinfoController extends Controller
     public function pay_course(Request $request, $id)
     {
 
-
+      $department = department::all();
+      $data['department'] = $department;
 
       $coursess = DB::table('submitcourses')
         ->select(
@@ -388,7 +397,8 @@ class CourseinfoController extends Controller
 
     public function submit_course(Request $request, $id)
     {
-
+      $department = department::all();
+      $data['department'] = $department;
       $bank = DB::table('banks')
         ->get();
 
@@ -505,7 +515,8 @@ class CourseinfoController extends Controller
 
     public function bil_course(Request $request, $id)
     {
-
+      $department = department::all();
+      $data['department'] = $department;
       $this->validate($request, [
            'bankname' => 'required',
            'totalmoney' => 'required',
@@ -638,9 +649,9 @@ class CourseinfoController extends Controller
 
                        Mail::send('mails.index', $data_toview, function($message) use ($data)
                        {
-                           $message->from($data['sender'], 'Learnsbuy');
+                           $message->from($data['sender'], 'Nubthong Su Sanon Shop');
                            $message->to($data['sender'])
-                           ->replyTo($data['sender'], 'Learnsbuy.')
+                           ->replyTo($data['sender'], 'Nubthong Su Sanon Shop.')
                            ->subject('ใบเสร็จสำหรับการสั่งสินค้า ');
 
                            //echo 'Confirmation email after registration is completed.';

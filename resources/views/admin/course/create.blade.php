@@ -7,6 +7,7 @@
 @section('admin.content')
 
 
+
 				<section role="main" class="content-body">
 
 					<header class="page-header">
@@ -120,7 +121,7 @@
 
 
 											<div class="form-group">
-                        <label class="col-md-3 control-label" for="profileFirstName">ราคาส่วนลด*</label>
+                        <label class="col-md-3 control-label" for="profileFirstName">จำนวนสินค้า*</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" name="discount" value="{{ old('discount') }}" placeholder="500">
                           </div>

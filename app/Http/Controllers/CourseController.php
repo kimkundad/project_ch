@@ -29,65 +29,18 @@ class CourseController extends Controller
      */
     public function index()
     {
-      $course_message = DB::table('submitcourses')
-        ->select(
-           'submitcourses.*',
-           'submitcourses.user_id as Uid',
-           'submitcourses.id as Oid',
-           'submitcourses.created_at as Dcre',
-           'users.*',
-           'users.id as Ustudent',
-           'courses.*',
-           'banks.*',
-           'courses.id as Ucourse'
-           )
-        ->leftjoin('users', 'users.id', '=', 'submitcourses.user_id')
-        ->leftjoin('courses', 'courses.id', '=', 'submitcourses.course_id')
-        ->leftjoin('banks', 'banks.id', '=', 'submitcourses.bank_id')
-        ->where('submitcourses.status', '=', 1)
-        ->count();
 
-      $data['course_message'] = $course_message;
-
-      $message_user = DB::table('messages')
-      ->select(
-      DB::raw('messages.*, max(messages.id) as id'),
-      'users.*'
-      )
-      ->leftjoin('users', 'users.id', '=', 'messages.chat_user_id')
-      ->where('messages.chat_user_id', '>', 1)
-      ->where('messages.seen', 0)
-      ->groupBy('messages.chat_user_id')
-      ->get();
-      $data['message_user'] = $message_user;
-
-
-      $message = DB::table('messages')
-       ->select(
-       DB::raw('messages.*')
-       )
-       ->where('chat_user_id', '>', 1)
-       ->where('seen', 0)
-       ->groupBy('chat_user_id')
-       ->get();
-
-       $s = 0;
-       foreach ($message as $obj) {
-          $s++;
-
-           $obj->options = $s;
-       }
-     $data['count_message'] = $s;
         $objs = DB::table('courses')
             ->select(
             'courses.*',
-            'examples.id as e_id',
+            'users.*',
+            'users.id as u_id',
             'courses.id as c_id'
             )
-            ->leftjoin('examples', 'examples.course_id', '=', 'courses.id')
-            ->groupBy('courses.id')
+            ->leftjoin('users', 'users.id', '=', 'courses.user_id')
+            ->where('courses.ch_status', 1)
             ->get();
-
+          //  dd($objs);
         $course = typecourses::all();
         $department = department::all();
         $data['department'] = $department;
@@ -95,6 +48,30 @@ class CourseController extends Controller
         $data['objs'] = $objs;
         $data['datahead'] = "คอร์สเรียนทั้งหมด";
         return view('admin.course.index', $data);
+    }
+
+
+    public function new_course(){
+
+      $objs = DB::table('courses')
+          ->select(
+          'courses.*',
+          'users.*',
+          'users.id as u_id',
+          'courses.id as c_id'
+          )
+          ->leftjoin('users', 'users.id', '=', 'courses.user_id')
+          ->where('courses.ch_status', 0)
+          ->get();
+        //  dd($objs);
+      $course = typecourses::all();
+      $department = department::all();
+      $data['department'] = $department;
+      $data['course'] = $course;
+      $data['objs'] = $objs;
+      $data['datahead'] = "คอร์สเรียนทั้งหมด";
+      return view('admin.course.index_new', $data);
+
     }
 
     /**

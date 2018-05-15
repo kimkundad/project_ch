@@ -131,9 +131,6 @@
 .bg-danger {
     padding: 15px;
 }
-.bg-danger {
-    padding: 15px;
-}
 .ui-pnotify .ui-pnotify-title {
     font-size: 14px;
     letter-spacing: 0;
@@ -152,17 +149,39 @@
   background: #47a447;
   color: rgba(255, 255, 255, 0.7);
 }
-.alert-success {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-}
 </style>
-
+<?php
+function DateThaif($strDate)
+{
+$strYear = date("Y",strtotime($strDate))+543;
+$strMonth= date("n",strtotime($strDate));
+$strDay= date("j",strtotime($strDate));
+$strHour= date("H",strtotime($strDate));
+$strMinute= date("i",strtotime($strDate));
+$strSeconds= date("s",strtotime($strDate));
+$strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+$strMonthThai=$strMonthCut[$strMonth];
+return "$strDay $strMonthThai";
+}
+ ?>
+<?php
+function DateThai($strDate)
+{
+$strYear = date("Y",strtotime($strDate))+543;
+$strMonth= date("n",strtotime($strDate));
+$strDay= date("j",strtotime($strDate));
+$strHour= date("H",strtotime($strDate));
+$strMinute= date("i",strtotime($strDate));
+$strSeconds= date("s",strtotime($strDate));
+$strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+$strMonthThai=$strMonthCut[$strMonth];
+return "$strDay $strMonthThai $strYear";
+}
+ ?>
 <div class="container" style="padding: 45px 15px 200px 15px; margin-bottom:30px;">
     <div class="row">
 
-          <div class="col-md-9">
+          <div class="col-md-12">
             <div id="kimkundad">
 
 
@@ -173,22 +192,12 @@
 
 
 
+
                 <div class="ap-user-info ">
                 <div class="ap-user-avatar">
-          @if($objs->provider == 'email')
-
-
-          @if($objs->avatar != NULL)
-          <img data-view="user_avatar_690" alt="" src="assets/images/avatar/{{$objs->avatar}}"
+          @if(Auth::user()->provider == 'email')
+          <img data-view="user_avatar_1980" alt="" src="assets/images/avatar/{{$objs->avatar}}"
           class="avatar avatar-40 photo" width="40" height="40" data-pin-nopin="true">
-          @else
-
-          <img data-view="user_avatar_690" alt="" src="assets/images/avatar/blank_avatar_240x240.gif"
-          class="avatar avatar-40 photo" width="40" height="40" data-pin-nopin="true">
-          @endif
-
-
-
           @else
           <img data-view="user_avatar_1980" alt="" src="//{{$objs->avatar}}"
           class="avatar avatar-40 photo" width="40" height="40" data-pin-nopin="true">
@@ -196,8 +205,8 @@
 
                         </div>
                 <div class="ap-user-data">
-          <a class="ap-user-name" href="#">{{$objs->name}}</a>
-                       </div>
+          <a class="ap-user-name" href="#">{{Auth::user()->name}}</a>
+                        </div>
                 <div class="ap-user-info-btns">
                           </div>
             </div>
@@ -210,11 +219,13 @@
 
             <div class="ap-user-navigation clearfix">
       <ul id="ap-user-menu" class="ap-user-menu ap_collapse_menu clearfix">
-        <li><a href="{{url('profile')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="ap-questions-featured fa fa-street-view"></i> ส่วนตัวของฉัน</a></li>
+        <li><a href="{{url('profile')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-street-view"></i> ส่วนตัวของฉัน</a></li>
 
 
-        <li><a href="{{url('user_course')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-graduation-cap"></i> สินค้าของฉัน</a></li>
-        <li><a href="{{url('product_user')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class=" fa fa-cubes"></i> สินค้าของฉัน</a></li>
+
+
+        <li><a href="{{url('user_course')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class=" fa fa-cube"></i> การสั่งซื้อสินค้า</a></li>
+        <li><a href="{{url('product_user')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="ap-questions-featured fa fa-cubes"></i> สินค้าของฉัน</a></li>
         <li><a href="{{url('My_order')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-cart-plus"></i> ยอดขายของฉัน</a></li>
 
         <li><a href="{{url('logout')}}" class="ap-user-menu-activity-feed apicon-rss"><i class="fa fa-sign-out"></i> ออกจากระบบ</a></li>
@@ -231,42 +242,68 @@
 
           <div class="ap-profile-box clearfix" >
 
+            <h3 class="ap-user-page-title clearfix">สินค้าของฉัน  </h3>
+
+            <a class="btn btn-default " href="{{url('product_user/create')}}" role="button">
+              <i class="fa fa-plus"></i> เพิ่มสินค้า</a>
+              <br><br>
+            <table class="table table-striped" >
+              <thead>
+                <tr>
+                  <th>#code</th>
+                  <th>ชื่อสินค้า</th>
+                  <th>ประเภท</th>
+                  <th>จำนวน</th>
+                  <th>ราคา</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                @if($product)
+            @foreach($product as $u)
+                <tr id="{{$u->id}}">
+                  <td>{{$u->code_course}}</td>
+                  <td>{{$u->title_course}}</td>
+
+                    <td>{{$u->name_department}}</td>
+                      <td>{{$u->discount}}</td>
+                      <td>{{$u->price_course}}</td>
+
+                  <td>
+                    <div class="switch switch-sm switch-success">
+                      @if($u->ch_status == 1)
+                      อนุมัติแล้ว
+                      @else
+                      ยังไม่อนุมัติ
+                      @endif
+                    </div>
+                  </td>
+
+                  <td>
+                    @if($u->e_id)
+
+                    @endif
+                    <a style="float:left; margin:3px; color:#fff" class="btn btn-primary btn-xs" href="{{url('product_user/'.$u->c_id.'/edit')}}" role="button"><i class="fa fa-wrench"></i> </a>
+
+                      <form  action="{{url('product_user/'.$u->c_id)}}" method="post" onsubmit="return(confirm('ท่านต้องการลบสินค้า ชิ้นนี้ใช่ไหม !'))">
+                        <input type="hidden" name="_method" value="DELETE">
+                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <button type="submit" style="float:left; margin:3px; height: 22px;" class="btn btn-danger btn-xs"><i class="fa fa-times "></i></button>
+                      </form>
+
+                  </td>
 
 
-            <div>
-              <h3 class="ap-user-page-title clearfix ">ข้อมูลส่วนตัว  </h3>
-
-              <table class="table ">
-                <tbody>
-
-                  <tr>
-                    <td>ชื่อของคุณ</td><td>{{$objs->name}}</td>
                   </tr>
-                  <tr>
-                    <td>อีเมล์</td><td>{{$objs->email}}</td>
-                    </tr>
-                    <tr>
-                    <td>เบอร์โทร</td><td>{{$objs->phone}}</td>
-                    </tr>
-                    <tr>
-                    <td>ID Line</td><td>{{$objs->line_id}}</td>
-                    </tr>
-                    <tr>
-                    <td>วันเกิดของฉัน</td><td>{{$objs->hbd}}</td>
-                    </tr>
-                    <tr>
-                    <td>ที่อยู่</td><td>{{$objs->address}}</td>
-                    </tr>
-                    <tr>
-                    <td>เกี่ยวกับนักเรียน</td><td>{{$objs->bio}}</td>
-                  </tr>
-                </tbody>
-              </table>
+                   @endforeach
+          @endif
 
-              <hr><a type="button" href="{{url('profile_user')}}" class="btn btn-default">แก้ไขข้อมูลส่วนตัว</a>
+              </tbody>
+            </table>
 
 
-            </div>
+
 
           </div>
 
@@ -278,7 +315,7 @@
 
 
 
-
+<br><br>
 
 
 
@@ -307,13 +344,7 @@
 
 
 
-          <div class="col-md-3">
-              <div id="sidebar" class="affix">
-  <div>
-    <img class="img-responsive" src="{{url('assets/image/s-l300.jpg')}}">
-  </div>
 
-</div>          </div>
 
 
 
@@ -330,13 +361,12 @@
 <script src="{{url('assets/date/js/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('/assets/vendor/pnotify/pnotify.custom.js')}}"></script>
 <script>
-$.fn.datepicker.defaults.format = "yyyy-mm-dd";
+$.fn.datepicker.defaults.format = "dd/mm/yyyy";
 $('.datepicker').datepicker({
 });
 </script>
 
-
-@if ($message = Session::get('success'))
+@if ($message = Session::get('success_course'))
 <script type="text/javascript">
 PNotify.prototype.options.styling = "fontawesome";
 new PNotify({
@@ -346,6 +376,20 @@ new PNotify({
     });
 </script>
 @endif
+
+
+@if ($message = Session::get('delete'))
+<script type="text/javascript">
+PNotify.prototype.options.styling = "fontawesome";
+new PNotify({
+      title: 'ยินดีด้วยค่ะ',
+      text: 'คุณลบสินค้า เรียบร้อยแล้ว',
+      type: 'success'
+    });
+</script>
+@endif
+
+
 
 
 
@@ -359,5 +403,7 @@ new PNotify({
     });
 </script>
 @endif
+
+
 
 @stop('scripts')

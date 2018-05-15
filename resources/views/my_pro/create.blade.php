@@ -181,7 +181,7 @@ return "$strDay $strMonthThai $strYear";
 <div class="container" style="padding: 45px 15px 200px 15px; margin-bottom:30px;">
     <div class="row">
 
-          <div class="col-md-9">
+          <div class="col-md-12">
             <div id="kimkundad">
 
 
@@ -195,7 +195,7 @@ return "$strDay $strMonthThai $strYear";
 
                 <div class="ap-user-info ">
                 <div class="ap-user-avatar">
-          @if($objs->provider == 'email')
+          @if(Auth::user()->provider == 'email')
           <img data-view="user_avatar_1980" alt="" src="assets/images/avatar/{{$objs->avatar}}"
           class="avatar avatar-40 photo" width="40" height="40" data-pin-nopin="true">
           @else
@@ -224,8 +224,8 @@ return "$strDay $strMonthThai $strYear";
 
 
 
-        <li><a href="{{url('user_course')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="ap-questions-featured fa fa-cube"></i> การสั่งซื้อสินค้า</a></li>
-        <li><a href="{{url('product_user')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-cubes"></i> สินค้าของฉัน</a></li>
+        <li><a href="{{url('user_course')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class=" fa fa-cube"></i> การสั่งซื้อสินค้า</a></li>
+        <li><a href="{{url('product_user')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="ap-questions-featured fa fa-cubes"></i> สินค้าของฉัน</a></li>
         <li><a href="{{url('My_order')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-cart-plus"></i> ยอดขายของฉัน</a></li>
 
         <li><a href="{{url('logout')}}" class="ap-user-menu-activity-feed apicon-rss"><i class="fa fa-sign-out"></i> ออกจากระบบ</a></li>
@@ -242,39 +242,108 @@ return "$strDay $strMonthThai $strYear";
 
           <div class="ap-profile-box clearfix" >
 
-            <h3 class="ap-user-page-title clearfix">สินค้าที่ฉันได้รับแล้ว  </h3>
-
-            <div>
-
-              @if($courseinfosfin != NULL)
-              @foreach($courseinfosfin as $coursesfin)
-          <div style="margin-bottom:20px; padding-bottom:5px; border-bottom: 1px solid #eee;">
-          <a href="{{url('user_course_detail/'.$coursesfin->Cid)}}"><img src="{{url('assets/uploads/'.$coursesfin->image_course)}}" class="img-responsive" style="height:100px; float:left; margin-right:8px;"></a>
-          <a href="{{url('user_course_detail/'.$coursesfin->Cid)}}">{{$coursesfin->title_course}}</a><br>
-          <td class="text-right">ช่วงเวลาที่เรียน : <?php echo DateThaif($coursesfin->start_course); ?> - <?php echo DateThai($coursesfin->end_course); ?></td><br>
-          <td class="text-right">วันที่เรียน : {{$coursesfin->day_course}}</td><br>
-          <td class="text-right">เวลาที่เรียน : {{$coursesfin->time_course}}</td><br>
-          <b class="text-danger">
-            @if($coursesfin->type_course == 3)
-              คอร์สเรียนฟรี
-            @else
-              ราคา : {{$coursesfin->price_course}} THB
-            @endif
+            <h3 class="ap-user-page-title clearfix">สร้างสินค้าของฉัน  </h3>
 
 
-          </b>
-          </div>
-              @endforeach
+            <form id="newsForm" class="form-horizontal" action="{{$url}}" method="post" enctype="multipart/form-data">
+              {{ method_field($method) }}
+              {{ csrf_field() }}
 
-              @else
 
-              @endif
+              <br>
+              <fieldset>
 
+                <div class="form-group">
+                  <label class="col-md-3 control-label" for="profileFirstName">ชื่อสินค้า*</label>
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="มินนะ โนะ นิฮงโกะ みんなの日本語 かんじ N5+N4">
+                  </div>
+                </div>
+
+
+
+                <div class="form-group">
+                  <label class="col-md-3 control-label" for="profileAddress">หมวดหมู่*</label>
+                  <div class="col-md-8">
+                    <select name="name_department" class="form-control mb-md" required>
+
+                              <option value="">-- เลือกหมวดหมู่ --</option>
+                              @foreach($department as $departments)
+                    <option value="{{$departments->id}}">{{$departments->name_department}}</option>
+                    @endforeach
+                            </select>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="profileFirstName">รหัสสินค้า*</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="code_course" value="{{ old('code_course') }}" placeholder="EN101">
+                    </div>
             </div>
 
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="profileFirstName">ราคาสินค้า*</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="price" value="{{ old('price') }}" placeholder="1500">
+                  </div>
+              </div>
 
 
-            <br>
+              <div class="form-group">
+                <label class="col-md-3 control-label" for="profileFirstName">จำนวนสินค้า*</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" name="discount" value="{{ old('discount') }}" placeholder="500">
+                  </div>
+              </div>
+
+
+
+
+                <div class="form-group">
+                  <label class="col-md-3 control-label" for="exampleInputEmail1">รูป สินค้า*</label>
+                  <div class="col-md-8">
+                  <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div class="input-append">
+                              <div class="uneditable-input">
+                                <i class="fa fa-file fileupload-exists"></i>
+                                <span class="fileupload-preview"></span>
+                              </div>
+                              <span class="btn btn-default btn-file">
+                                <span class="fileupload-exists">Change</span>
+                                <span class="fileupload-new">Select file</span>
+                                <input type="file" name="image">
+                              </span>
+                              <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
+                            </div>
+                          </div>
+                          </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                  <label class="col-md-3 control-label" for="profileFirstName">รายละเอียดสินค้า*</label>
+                  <div class="col-md-8">
+                    <textarea class="form-control" name="detail" rows="4">{{ old('detail') }}</textarea>
+                  </div>
+                </div>
+
+
+
+
+
+              </fieldset>
 
 
 
@@ -282,28 +351,17 @@ return "$strDay $strMonthThai $strYear";
 
 
 
-            <br>
-            <h3 class="ap-user-page-title clearfix">สินค้าที่ฉันจองไว้  </h3>
 
-            <div>
-              @if($courseinfos != NULL)
-              @foreach($courseinfos as $courses)
-              <div style="margin-bottom:20px; padding-bottom:5px; border-bottom: 1px solid #eee;">
-    <a href=""><img src="{{url('assets/uploads/'.$courses->image_course)}}" class="img-responsive" style="height:100px; float:left; margin-right:8px;"></a>
-    <a href="{{url('')}}">{{$courses->title_course}}</a><br>
-    <td class="text-right">หมวดหมู่ : {{$courses->name_department}}</td><br>
+                <div class="row">
+                  <div class="col-md-9 col-md-offset-3">
+                    <button type="submit" class="btn btn-primary">เพิ่มสินค้า</button>
+                    <button type="reset" class="btn btn-default">Reset</button>
+                  </div>
+                </div>
 
-    <b class="text-danger">ราคา : {{$courses->price_course}} THB</b>
-    <a type="button" style="color:#fff" class="btn btn-danger btn-xs">กำลังดำเนินการ</a>
-    </div>
-              @endforeach
+            </form>
 
 
-              @else
-
-              @endif
-
-            </div>
 
           </div>
 
@@ -344,13 +402,7 @@ return "$strDay $strMonthThai $strYear";
 
 
 
-          <div class="col-md-3">
-              <div id="sidebar" class="affix">
-  <div>
-    <img class="img-responsive" src="{{url('assets/image/s-l300.jpg')}}">
-  </div>
 
-</div>          </div>
 
 
 

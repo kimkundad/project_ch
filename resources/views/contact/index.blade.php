@@ -164,14 +164,7 @@ ul.list_order li span {
           </p>
         </div>
 
-        <div class="col-md-12" style="margin-top:40px;">
-          <h3>แผนที่ ZA-SHI สาขาสยามสแควร์</h3>
-          <h5 class="text-green"> หากมารถไฟฟ้า เดินมาตาม Siamsquare One สะดวกมากค่ะ ตรงมาเรื่อยๆ จะเจอร้านอาการ บ้านคุณแม่ สถาบันอยู่ถัดไปเล็กน้อยค่ะ</h5>
-          <hr>
-          <div class="col-md-9 col-md-offset-2">
-            <img src="{{url('assets/image/map_siam.jpg')}}" class="img-responsive">
-          </div>
-        </div>
+    
 
 
     </div>

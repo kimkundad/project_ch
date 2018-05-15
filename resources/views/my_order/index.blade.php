@@ -131,9 +131,6 @@
 .bg-danger {
     padding: 15px;
 }
-.bg-danger {
-    padding: 15px;
-}
 .ui-pnotify .ui-pnotify-title {
     font-size: 14px;
     letter-spacing: 0;
@@ -152,17 +149,39 @@
   background: #47a447;
   color: rgba(255, 255, 255, 0.7);
 }
-.alert-success {
-    color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-}
 </style>
-
+<?php
+function DateThaif($strDate)
+{
+$strYear = date("Y",strtotime($strDate))+543;
+$strMonth= date("n",strtotime($strDate));
+$strDay= date("j",strtotime($strDate));
+$strHour= date("H",strtotime($strDate));
+$strMinute= date("i",strtotime($strDate));
+$strSeconds= date("s",strtotime($strDate));
+$strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+$strMonthThai=$strMonthCut[$strMonth];
+return "$strDay $strMonthThai";
+}
+ ?>
+<?php
+function DateThai($strDate)
+{
+$strYear = date("Y",strtotime($strDate))+543;
+$strMonth= date("n",strtotime($strDate));
+$strDay= date("j",strtotime($strDate));
+$strHour= date("H",strtotime($strDate));
+$strMinute= date("i",strtotime($strDate));
+$strSeconds= date("s",strtotime($strDate));
+$strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+$strMonthThai=$strMonthCut[$strMonth];
+return "$strDay $strMonthThai $strYear";
+}
+ ?>
 <div class="container" style="padding: 45px 15px 200px 15px; margin-bottom:30px;">
     <div class="row">
 
-          <div class="col-md-9">
+          <div class="col-md-12">
             <div id="kimkundad">
 
 
@@ -173,22 +192,12 @@
 
 
 
+
                 <div class="ap-user-info ">
                 <div class="ap-user-avatar">
-          @if($objs->provider == 'email')
-
-
-          @if($objs->avatar != NULL)
-          <img data-view="user_avatar_690" alt="" src="assets/images/avatar/{{$objs->avatar}}"
+          @if(Auth::user()->provider == 'email')
+          <img data-view="user_avatar_1980" alt="" src="assets/images/avatar/{{$objs->avatar}}"
           class="avatar avatar-40 photo" width="40" height="40" data-pin-nopin="true">
-          @else
-
-          <img data-view="user_avatar_690" alt="" src="assets/images/avatar/blank_avatar_240x240.gif"
-          class="avatar avatar-40 photo" width="40" height="40" data-pin-nopin="true">
-          @endif
-
-
-
           @else
           <img data-view="user_avatar_1980" alt="" src="//{{$objs->avatar}}"
           class="avatar avatar-40 photo" width="40" height="40" data-pin-nopin="true">
@@ -196,8 +205,8 @@
 
                         </div>
                 <div class="ap-user-data">
-          <a class="ap-user-name" href="#">{{$objs->name}}</a>
-                       </div>
+          <a class="ap-user-name" href="#">{{Auth::user()->name}}</a>
+                        </div>
                 <div class="ap-user-info-btns">
                           </div>
             </div>
@@ -210,12 +219,14 @@
 
             <div class="ap-user-navigation clearfix">
       <ul id="ap-user-menu" class="ap-user-menu ap_collapse_menu clearfix">
-        <li><a href="{{url('profile')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="ap-questions-featured fa fa-street-view"></i> ส่วนตัวของฉัน</a></li>
+        <li><a href="{{url('profile')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-street-view"></i> ส่วนตัวของฉัน</a></li>
 
 
-        <li><a href="{{url('user_course')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-graduation-cap"></i> สินค้าของฉัน</a></li>
-        <li><a href="{{url('product_user')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class=" fa fa-cubes"></i> สินค้าของฉัน</a></li>
-        <li><a href="{{url('My_order')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-cart-plus"></i> ยอดขายของฉัน</a></li>
+
+
+        <li><a href="{{url('user_course')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class=" fa fa-cube"></i> การสั่งซื้อสินค้า</a></li>
+        <li><a href="{{url('product_user')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-cubes"></i> สินค้าของฉัน</a></li>
+        <li><a href="{{url('My_order')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="ap-questions-featured fa fa-cart-plus"></i> ยอดขายของฉัน</a></li>
 
         <li><a href="{{url('logout')}}" class="ap-user-menu-activity-feed apicon-rss"><i class="fa fa-sign-out"></i> ออกจากระบบ</a></li>
       </ul></div>
@@ -231,42 +242,58 @@
 
           <div class="ap-profile-box clearfix" >
 
+            <h3 class="ap-user-page-title clearfix">ยอดขายของฉัน  </h3>
+            <p class="text-danger">**การฝากขายสินค้า ทางเว็บไซต์จะหัก 5% จากราคาที่ท่าน ทุกๆรายการ</p>
 
 
-            <div>
-              <h3 class="ap-user-page-title clearfix ">ข้อมูลส่วนตัว  </h3>
-
-              <table class="table ">
-                <tbody>
-
-                  <tr>
-                    <td>ชื่อของคุณ</td><td>{{$objs->name}}</td>
-                  </tr>
-                  <tr>
-                    <td>อีเมล์</td><td>{{$objs->email}}</td>
-                    </tr>
-                    <tr>
-                    <td>เบอร์โทร</td><td>{{$objs->phone}}</td>
-                    </tr>
-                    <tr>
-                    <td>ID Line</td><td>{{$objs->line_id}}</td>
-                    </tr>
-                    <tr>
-                    <td>วันเกิดของฉัน</td><td>{{$objs->hbd}}</td>
-                    </tr>
-                    <tr>
-                    <td>ที่อยู่</td><td>{{$objs->address}}</td>
-                    </tr>
-                    <tr>
-                    <td>เกี่ยวกับนักเรียน</td><td>{{$objs->bio}}</td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <hr><a type="button" href="{{url('profile_user')}}" class="btn btn-default">แก้ไขข้อมูลส่วนตัว</a>
+            <table class="table table-striped" >
+              <thead>
+                <tr>
 
 
-            </div>
+                  <th>สินค้า</th>
+
+                  <th>จำนวนเงินที่ได้</th>
+                  <th>สถานะ</th>
+                  <th>สั่งซื้อวันที่</th>
+
+                </tr>
+              </thead>
+              <tbody>
+
+
+                @if($coursess)
+            @foreach($coursess as $u)
+            <tr>
+
+
+              <td>{{$u->title_course}}</a></td>
+
+              <td>{{$u->money_tran - ($u->money_tran *(5/100))}}</td>
+              <td>
+                @if($u->status == 2)
+                  <span class="text-success">อนุมัติผ่าน</span>
+                @else
+                  <span class="text-danger">รอการตรวจสอบ</span>
+
+                @endif
+              </td>
+              <td>{{$u->Dcre}}</td>
+
+
+
+
+
+              </tr>
+                   @endforeach
+          @endif
+
+
+
+
+              </tbody>
+            </table>
+
 
           </div>
 
@@ -278,7 +305,7 @@
 
 
 
-
+<br><br>
 
 
 
@@ -307,13 +334,7 @@
 
 
 
-          <div class="col-md-3">
-              <div id="sidebar" class="affix">
-  <div>
-    <img class="img-responsive" src="{{url('assets/image/s-l300.jpg')}}">
-  </div>
 
-</div>          </div>
 
 
 
@@ -330,13 +351,12 @@
 <script src="{{url('assets/date/js/bootstrap-datepicker.js')}}"></script>
 <script src="{{asset('/assets/vendor/pnotify/pnotify.custom.js')}}"></script>
 <script>
-$.fn.datepicker.defaults.format = "yyyy-mm-dd";
+$.fn.datepicker.defaults.format = "dd/mm/yyyy";
 $('.datepicker').datepicker({
 });
 </script>
 
-
-@if ($message = Session::get('success'))
+@if ($message = Session::get('success_course'))
 <script type="text/javascript">
 PNotify.prototype.options.styling = "fontawesome";
 new PNotify({
@@ -346,6 +366,20 @@ new PNotify({
     });
 </script>
 @endif
+
+
+@if ($message = Session::get('delete'))
+<script type="text/javascript">
+PNotify.prototype.options.styling = "fontawesome";
+new PNotify({
+      title: 'ยินดีด้วยค่ะ',
+      text: 'คุณลบสินค้า เรียบร้อยแล้ว',
+      type: 'success'
+    });
+</script>
+@endif
+
+
 
 
 
@@ -359,5 +393,7 @@ new PNotify({
     });
 </script>
 @endif
+
+
 
 @stop('scripts')

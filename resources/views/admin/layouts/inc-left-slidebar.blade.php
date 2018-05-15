@@ -45,6 +45,8 @@ html.no-overflowscrolling .nano > .nano-pane > .nano-slider {
 											<span>รายชื่อสมาชิก</span>
 										</a>
 									</li>
+
+
 									<li {{ (Request::is('admin/course*') ? 'class=nav-expanded' : '') }}
                   {{ (Request::is('admin/typecourse*') ? 'class=nav-expanded' : '') }}
                   {{ (Request::is('admin/examination/*') ? 'class=nav-expanded' : '') }}
@@ -52,6 +54,15 @@ html.no-overflowscrolling .nano > .nano-pane > .nano-slider {
 										<a href="{{url('admin/course/')}}" >
 											<i class="fa fa-cube" aria-hidden="true"></i>
 											<span>สินค้า</span>
+										</a>
+									</li>
+
+
+
+                  <li {{ (Request::is('admin/new_course*') ? 'class=nav-expanded' : '') }}>
+										<a href="{{url('admin/new_course/')}}" >
+											<i class="fa fa-cube" aria-hidden="true"></i>
+											<span>สินค้ารอตรวจสอบ !</span>
 										</a>
 									</li>
 

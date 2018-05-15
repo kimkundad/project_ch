@@ -265,7 +265,8 @@
 
 
         <li><a href="{{url('user_course')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-graduation-cap"></i> สินค้าของฉัน</a></li>
-
+        <li><a href="{{url('product_user')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class=" fa fa-cubes"></i> สินค้าของฉัน</a></li>
+        <li><a href="{{url('My_order')}}" class="ap-user-menu-orders apicon-shopping-cart"><i class="fa fa-cart-plus"></i> ยอดขายของฉัน</a></li>
         <li><a href="{{url('logout')}}" class="ap-user-menu-activity-feed apicon-rss"><i class="fa fa-sign-out"></i> ออกจากระบบ</a></li>
       </ul></div>
 
@@ -409,7 +410,7 @@
   <div>
     <img class="img-responsive" src="{{url('assets/image/s-l300.jpg')}}">
   </div>
-  
+
 </div>          </div>
 
 

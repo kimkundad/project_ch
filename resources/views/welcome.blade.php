@@ -171,9 +171,11 @@ footer {
 
                   <div class="col-sm-4 col-md-3">
                         <div class="thumbnail">
+                          <div style="max-height: 195px; min-height: 195px; overflow: hidden; position: relative;">
                           <a href="{{url('/courseinfo/'.$obj->A)}}">
                           <img src="{{url('assets/uploads/'.$obj->image_course)}}" >
                           </a>
+                          </div>
                           <div class="caption" style="padding: 3px;">
                             <div class="descript bold">
                                 <a href="{{url('/courseinfo/'.$obj->A)}}" data-dismiss="modal" data-toggle="modal" data-target="#show_detail54"> {{$obj->title_course}}</a>
@@ -187,11 +189,7 @@ footer {
                               <div class="postMetaInline-authorLockup">
                                 <div >
                                   <span class="readingPrice">
-                                <span class="text-primary">{{$obj->code_course}}</span>, ฿ @if($obj->price_course == 0)
-                                    Free Course
-                                                            @else
-                                                      {{$obj->price_course}}  บาท
-                                                            @endif
+                                <span class="text-primary">{{$obj->code_course}}</span>, ฿ {{$obj->price_course}}  บาท
                                   </span>
                                 </div>
                               </div>

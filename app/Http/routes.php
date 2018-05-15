@@ -134,6 +134,10 @@ Route::post('add_video_course', 'CourseController@add_video_course');
         Route::resource('admin/teacher', 'TeacherController');
         Route::resource('admin/student', 'StudentController');
         Route::resource('admin/course', 'CourseController');
+
+        Route::get('admin/new_course', 'CourseController@new_course');
+
+
         Route::resource('admin/play_student', 'Course_studentController');
         Route::resource('admin/department', 'DepartmentController');
 
@@ -187,6 +191,8 @@ Route::post('add_video_course', 'CourseController@add_video_course');
 Route::group(['middleware' => 'auth'], function () {
 
   Route::put('/bil_course/{id}', 'CourseinfoController@bil_course');
+  Route::resource('product_user', 'ProuserController');
+  Route::resource('My_order', 'MyorderController');
 
   Route::resource('comment', 'CommentController');
 

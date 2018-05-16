@@ -51,7 +51,7 @@ class HomeController extends Controller
           'departments.*'
           )
           ->leftjoin('departments', 'departments.id', '=', 'courses.department_id')
-          ->limit(8)
+          ->limit(24)
           ->get();
 
       $data['objs'] = $objs;

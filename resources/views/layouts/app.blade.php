@@ -145,10 +145,10 @@ footer-menu {
                 </div>
 
                 <div class="col-md-2">
-                    <h4>บริการ<span class="head-line"></span></h4>
+                    <h4>ข้อตกลง<span class="head-line"></span></h4>
                     <ul>
-
-
+                      <li><a href="{{url('terms')}}" style="color: #ccc;">Terms of service.</a></li>
+                      <li><a href="{{url('privacypolicy')}}" style="color: #ccc;">Privacy Policy.</a></li>
                     </ul>
                 </div>
 

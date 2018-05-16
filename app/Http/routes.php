@@ -125,6 +125,8 @@ Route::post('add_video_course', 'CourseController@add_video_course');
     Route::group(['middleware' => 'admin'], function() {
 
       Route::post('admin/post_status', 'CourseController@post_status');
+      Route::post('admin/post_status_pay', 'PaymoneyController@post_status_pay');
+
 
         Route::resource('admin/free_course', 'Free_courseController');
         Route::resource('admin/wallet', 'Wallet_submitController');
@@ -171,6 +173,9 @@ Route::post('add_video_course', 'CourseController@add_video_course');
 
         Route::get('local/.env');
 
+
+        Route::resource('admin/pay_money', 'PaymoneyController');
+        Route::get('admin/success_money', 'PaymoneyController@index2');
         Route::resource('admin/ans', 'AnsController');
         Route::get('admin/inbox', 'MassageController@index_admin');
 

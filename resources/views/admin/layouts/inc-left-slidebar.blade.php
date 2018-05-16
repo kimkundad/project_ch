@@ -66,6 +66,20 @@ html.no-overflowscrolling .nano > .nano-pane > .nano-slider {
 										</a>
 									</li>
 
+                  <li {{ (Request::is('admin/pay_money*') ? 'class=nav-expanded' : '') }}>
+										<a href="{{url('admin/pay_money/')}}" >
+											<i class="fa fa-fire" aria-hidden="true"></i>
+											<span>รอการเบิกจ่าย !</span>
+										</a>
+									</li>
+
+                  <li {{ (Request::is('admin/success_money*') ? 'class=nav-expanded' : '') }}>
+										<a href="{{url('admin/success_money/')}}" >
+											<i class="fa fa-heart-o" aria-hidden="true"></i>
+											<span>รายการโอนเงินเสร็จสิ้น !</span>
+										</a>
+									</li>
+
                   <li {{ (Request::is('admin/department*') ? 'class=nav-expanded' : '') }} >
 										<a href="{{url('admin/department/')}}" >
 											<i class="fa fa-flag" aria-hidden="true"></i>

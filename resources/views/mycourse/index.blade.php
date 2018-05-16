@@ -295,7 +295,7 @@ return "$strDay $strMonthThai $strYear";
 
     <b class="text-danger">ราคา : {{$courses->price_course}} THB</b>
     <a type="button" style="color:#fff" class="btn btn-danger btn-xs">กำลังดำเนินการ</a>
-    </div>
+  </div><br><br>
               @endforeach
 
 

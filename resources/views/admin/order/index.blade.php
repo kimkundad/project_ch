@@ -57,6 +57,7 @@
                       <th>สินค้า</th>
                       <th>ธนาคาร</th>
                       <th>จำนวนเงิน</th>
+                      <th>จำนวนสินค้า</th>
                       <th>วันที่โอน</th>
                       <th>สั่งซื้อวันที่</th>
                       <th>Action</th>
@@ -71,6 +72,7 @@
                       <td><a href="{{url('admin/course/'.$u->Ucourse.'/edit')}}" target="_blank">{{$u->title_course}}</a></td>
                       <td>{{$u->bank_name}}</td>
                       <td>{{$u->money_tran}}</td>
+                      <td>{{$u->end_time}}</td>
                       <td>{{$u->date_tran}}</td>
                       <td>{{$u->Dcre}}</td>
 

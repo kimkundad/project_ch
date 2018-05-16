@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
+use App\department;
 
 class MyorderController extends Controller
 {
@@ -16,6 +17,9 @@ class MyorderController extends Controller
      */
     public function index()
     {
+      $department = department::all();
+      $data['department'] = $department;
+
       $objs = DB::table('users')
           ->select(
           'users.*'
@@ -44,10 +48,6 @@ class MyorderController extends Controller
             ->get();
 
           $data['coursess'] = $coursess;
-
-
-
-
 
         //  dd($objs);
       $data['objs'] = $objs;

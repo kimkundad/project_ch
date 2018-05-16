@@ -107,8 +107,8 @@ return "$strDay $strMonthThai $strYear";
               <img src="{{url('assets/uploads/'.$objs->image_course)}}" class="img-responsive">
             <table class="table table-striped">
                 <tr>
-                  <td>ชื่อผู้เรียน</td>
-                  <td class="text-right">kimkundad</td>
+                  <td>ชื่อสั่งสินค้า</td>
+                  <td class="text-right">{{$user->name}}</td>
                 </tr>
                 <tr>
                   <td>ชื่อสินค้า</td>

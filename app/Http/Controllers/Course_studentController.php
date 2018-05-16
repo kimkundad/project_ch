@@ -189,25 +189,36 @@ class Course_studentController extends Controller
            $obj->options = $s;
        }
      $data['count_message'] = $s;
-      $coursess = DB::table('submitcourses')
-        ->select(
-           'submitcourses.*',
-           'submitcourses.user_id as Uid',
-           'submitcourses.id as Oid',
-           'submitcourses.created_at as Dcre',
-           'users.*',
-           'users.id as Ustudent',
-           'courses.*',
-           'banks.*',
-           'courses.id as Ucourse'
-           )
-        ->where('submitcourses.id', $id)
-        ->leftjoin('users', 'users.id', '=', 'submitcourses.user_id')
-        ->leftjoin('courses', 'courses.id', '=', 'submitcourses.course_id')
-        ->leftjoin('banks', 'banks.id', '=', 'submitcourses.bank_id')
-        ->first();
+     $coursess = DB::table('submitcourses')
+       ->select(
+          'submitcourses.*',
+          'submitcourses.user_id as Uid',
+          'submitcourses.id as Oid',
+          'submitcourses.created_at as Dcre',
+          'users.*',
+          'users.id as Ustudent',
+          'courses.*',
+          'banks.*',
+          'courses.id as Ucourse',
+          'courses.user_id as c_user'
+          )
+       ->where('submitcourses.id', $id)
+       ->leftjoin('users', 'users.id', '=', 'submitcourses.user_id')
+       ->leftjoin('courses', 'courses.id', '=', 'submitcourses.course_id')
+       ->leftjoin('banks', 'banks.id', '=', 'submitcourses.bank_id')
+       ->first();
+
+        $user_owner = DB::table('courses')
+          ->select(
+             'courses.*',
+             'users.*'
+             )
+          ->leftjoin('users', 'users.id', '=', 'courses.user_id')
+          ->where('courses.user_id', $coursess->c_user)
+          ->first();
 
       //dd($coursess);
+      $data['user_owner'] = $user_owner;
       $data['method'] = "put";
       $data['url'] = url('admin/play_student/'.$id);
       $data['courseinfo'] = $coursess;

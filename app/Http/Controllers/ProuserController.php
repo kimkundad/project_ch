@@ -29,6 +29,9 @@ class ProuserController extends Controller
      */
     public function index()
     {
+      $department = department::all();
+      $data['department'] = $department;
+      
       $objs = DB::table('users')
           ->select(
           'users.*'

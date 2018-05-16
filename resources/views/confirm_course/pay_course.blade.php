@@ -151,7 +151,7 @@ return "$strDay $strMonthThai $strYear";
                 <tr>
                   <br>
                   <td><h3> ยอดรวมทั้งสิ้น</h3></td>
-                  <td class="text-right"><h3> {{$courseinfo->price_course}}</h3></td>
+                  <td class="text-right"><h3 > <input type="number" class="form-control" id="total_2" value="{{$courseinfo->price_course}}" > </h3></td>
                 </tr>
               </table>
               </div>
@@ -227,7 +227,18 @@ return "$strDay $strMonthThai $strYear";
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">ยอดโอน</label>
-                  <input type="number" class="form-control" name="totalmoney" required="">
+                  <input type="number" class="form-control" name="totalmoney" id="totals" value="{{$courseinfo->price_course}}" required="">
+              
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1">จำนวนสินค้าในคลังที่มี</label>
+                  <input type="number" class="form-control" value="{{$courseinfo->discount}}"  readonly>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1">ใส่จำนวนสินค้าที่สั่งซื้อ</label>
+                  <input type="number" class="form-control" onblur="findTotal()" value="1" id="number" name="item_oriduct" required="">
                 </div>
 
                 <div class="form-group">
@@ -262,7 +273,7 @@ return "$strDay $strMonthThai $strYear";
 
                 <div class="form-group col-md-6 bank" style="width: 48%; ">
                   <label for="exampleInputEmail1">เวลาที่โอน</label>
-                  <input type="text" class="form-control" name="timer" placeholder="10.52น." required="">
+                  <input type="text" class="form-control" name="timer" placeholder="10.52น." >
                 </div>
 
 
@@ -300,6 +311,20 @@ return "$strDay $strMonthThai $strYear";
 <script src="{{url('assets/vendor/bootstrap-fileupload/bootstrap-fileupload.min.js')}}"></script>
 <script src="{{url('assets/date/js/bootstrap-datepicker.js')}}"></script>
 <script>
+function findTotal(){
+
+  var sum_1 = {{$courseinfo->price_course}};
+
+  var value = parseInt(document.getElementById('number').value, 0);
+
+//  var totals = document.getElementsByName('totals_1');
+
+
+
+document.getElementById('total_2').value = sum_1*value;
+document.getElementById('totals').value = sum_1*value;
+}
+
 $.fn.datepicker.defaults.format = "yyyy-mm-dd";
 $('.datepicker').datepicker({
 });

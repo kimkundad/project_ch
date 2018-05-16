@@ -254,7 +254,8 @@ return "$strDay $strMonthThai $strYear";
                   <th>สินค้า</th>
 
                   <th>จำนวนเงินที่ได้</th>
-                  <th>สถานะ</th>
+                  <th>จำนวนสินค้าที่สั่ง</th>
+                  <th>สถานะ / การโอนเงิน</th>
                   <th>สั่งซื้อวันที่</th>
 
                 </tr>
@@ -270,9 +271,15 @@ return "$strDay $strMonthThai $strYear";
               <td>{{$u->title_course}}</a></td>
 
               <td>{{$u->money_tran - ($u->money_tran *(5/100))}}</td>
+              <td>{{$u->end_time}}</a></td>
               <td>
                 @if($u->status == 2)
-                  <span class="text-success">อนุมัติผ่าน</span>
+                  <span class="text-success">อนุมัติผ่าน /
+                  @if($u->hrcourse == 0)
+                      รอการโอน
+                  @else
+                     โอนเรียบร้อย
+                  @endif</span>
                 @else
                   <span class="text-danger">รอการตรวจสอบ</span>
 

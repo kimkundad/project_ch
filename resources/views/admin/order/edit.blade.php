@@ -94,8 +94,12 @@ return "$strDay $strMonthThai $strYear";
 											<div class="table-responsive">
                       <table class="table table-striped" style="font-size: 14px;">
                         <tr>
-                          <td>นักเรียน</td>
+                          <td>ชื่อผู้สั่ง</td>
                           <td>{{$courseinfo->name}}</td>
+                        </tr>
+                        <tr>
+                          <td>เจ้าของสินค้า</td>
+                          <td>{{$user_owner->name}}</td>
                         </tr>
                         <tr>
                           <td>สถานะ</td>
@@ -126,7 +130,12 @@ return "$strDay $strMonthThai $strYear";
                           <td>ราคาสินค้า</td>
                           <td>{{$courseinfo->price_course}}</td>
                         </tr>
-                      
+                        @if($courseinfo->bill_image != null)
+                        <tr>
+                          <td>หลักฐานการโอน</td>
+                          <td><img src="{{url('assets/bill/'.$courseinfo->bill_image)}}" class="img-responsive"></td>
+                        </tr>
+                        @endif
                         <tr>
                           <td>ช่วงเวลาที่เรียน</td>
                           <td><?php echo DateThaif($courseinfo->start_course); ?> - <?php echo DateThai($courseinfo->end_course); ?></td>
@@ -149,8 +158,12 @@ return "$strDay $strMonthThai $strYear";
                             <input type="hidden" class="form-control" name="user_id"  value="{{$courseinfo->Ustudent}}" >
                             <input type="hidden" class="form-control" name="money_tran"  value="{{$courseinfo->money_tran}}" >
                             <input type="hidden" class="form-control" name="course_tran"  value="{{$courseinfo->title_course}}" >
-
-
+                            <div class="form-group">
+    													<label class="col-md-3 control-label" for="profileAddress">จำนวนสินค้าที่ถูกสั่ง*</label>
+                              <div class="col-md-8">
+                            <input type="number" class="form-control" name="item_oriduct"  value="{{$courseinfo->end_time}}" >
+                            </div>
+                            </div>
 
 
 

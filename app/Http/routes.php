@@ -220,7 +220,7 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('/get_wallet/{id}', 'Wallet_submitController@buy_wallet');
   Route::post('/post_wallet', 'Wallet_submitController@post_wallet');
 
-  Route::post('/submit_course_free/{id}', 'CourseinfoController@submit_course_free');
+
 
   Route::get('success_ans/{id}', 'MycourseController@success_ans');
   Route::get('user_rep', 'MycourseController@user_rep');

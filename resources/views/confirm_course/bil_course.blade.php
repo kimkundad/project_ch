@@ -109,9 +109,10 @@ return "$strDay $strMonthThai $strYear";
 
     <div class="row">
         <div class="col-md-10 col-md-offset-3" >
-         <h3 style="margin-bottom: 0px;" class="">{{$courseinfo->title_course}} <span class="head-lines"></span></h3>
+
 
           <div class="col-xs-12  col-md-8 ">
+            <h3 class="text-center" style="margin-bottom: 0px;" class="">{{$courseinfo->title_course}} </h3>
 
               @if($courseinfo->status == 1 || $courseinfo->status == 0)
               <h3 class="text-center" style="color:#f36510">

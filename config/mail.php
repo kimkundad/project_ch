@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'learnsbuy@gmail.com', 'name' => 'Learnsbuy'],
+    'from' => ['address' => 'home221b@gmail.com', 'name' => 'Nubthong Su Sanon Shop'],
 
     /*
     |--------------------------------------------------------------------------
@@ -108,5 +108,7 @@ return [
     */
 
     'sendmail' => '/usr/sbin/sendmail -bs',
+
+    'pretend' => false,
 
 ];

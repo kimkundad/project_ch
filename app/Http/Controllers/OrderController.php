@@ -205,7 +205,8 @@ class OrderController extends Controller
            'users.id as Ustudent',
            'courses.*',
            'banks.*',
-           'courses.id as Ucourse'
+           'courses.id as Ucourse',
+           'courses.user_id as c_user'
            )
         ->where('submitcourses.id', $id)
         ->leftjoin('users', 'users.id', '=', 'submitcourses.user_id')
@@ -213,10 +214,21 @@ class OrderController extends Controller
         ->leftjoin('banks', 'banks.id', '=', 'submitcourses.bank_id')
         ->first();
 
-      //dd($coursess);
+
+        $user_owner = DB::table('courses')
+          ->select(
+             'courses.*',
+             'users.*'
+             )
+          ->leftjoin('users', 'users.id', '=', 'courses.user_id')
+          ->where('courses.user_id', $coursess->c_user)
+          ->first();
+
+      //dd($user_owner);
       $data['method'] = "put";
       $data['url'] = url('admin/order_shop/'.$id);
       $data['courseinfo'] = $coursess;
+      $data['user_owner'] = $user_owner;
       $data['datahead'] = "จัดการคำสั่งซื้อทั้งหมด";
       return view('admin.order.edit', $data);
     }
@@ -231,7 +243,8 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
       $this->validate($request, [
-     'status' => 'required'
+     'status' => 'required',
+     'item_oriduct' => 'required'
     ]);
 
 
@@ -239,6 +252,24 @@ class OrderController extends Controller
 
                $data_date = date("Y-m-d H:i:s");
 
+
+
+               $get_info = DB::table('submitcourses')
+                 ->select(
+                    'submitcourses.*'
+                    )
+                 ->where('submitcourses.id', $id)
+                 ->first();
+
+                 $get_info2 = DB::table('courses')
+                   ->select(
+                      'courses.*'
+                      )
+                   ->where('courses.id', $get_info->course_id)
+                   ->first();
+
+                 $item_oriduct = 0;
+                 $item_oriduct = $get_info2->discount - $request['item_oriduct'];
 
     $upobj = DB::table('submitcourses')
         ->select(
@@ -248,6 +279,16 @@ class OrderController extends Controller
         ->update(array(
           'status' => $request['status']
         ));
+
+
+        $st_c = DB::table('courses')
+            ->select(
+            'courses.*'
+            )
+            ->where('id', $get_info->course_id)
+            ->update(array(
+              'discount' => $item_oriduct
+            ));
 
 
 

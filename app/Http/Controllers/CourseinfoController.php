@@ -134,29 +134,14 @@ class CourseinfoController extends Controller
       $data['department'] = $department;
       $bank = DB::table('banks')
         ->get();
-      $getc = DB::table('submitcourses')
-        ->select(
-           'submitcourses.*'
-           )
-        ->where('submitcourses.user_id', Auth::user()->id)
-        ->where('submitcourses.course_id', $id)
-        ->first();
 
-      //  dd($getc->Oid);
 
-      $coursess = DB::table('submitcourses')
-        ->select(
-           'submitcourses.*',
-           'submitcourses.user_id as Uid',
-           'submitcourses.id as Oid',
-           'users.*',
-           'courses.*'
-           )
-        ->where('submitcourses.user_id', Auth::user()->id)
-        ->where('submitcourses.id', $getc->id)
-        ->leftjoin('users', 'users.id', '=', 'submitcourses.user_id')
-        ->leftjoin('courses', 'courses.id', '=', 'submitcourses.course_id')
-        ->first();
+        $coursess = DB::table('courses')
+          ->select(
+             'courses.*'
+             )
+          ->where('courses.id', $id)
+          ->first();
 
     //  dd($data);
 
@@ -178,54 +163,26 @@ class CourseinfoController extends Controller
 
       $courseinfo = course::find($id);
 
-      $count_course = DB::table('submitcourses')
+      $user = DB::table('users')
         ->select(
-           'submitcourses.*'
+           'users.*'
            )
-        ->where('submitcourses.user_id', Auth::user()->id)
-        ->where('submitcourses.course_id', $courseinfo->id)
+        ->where('users.id', Auth::user()->id)
         ->first();
 
 
-        $coursess = DB::table('submitcourses')
+        $coursess = DB::table('courses')
           ->select(
-             'submitcourses.*',
-             'submitcourses.user_id as Uid',
-             'submitcourses.id as Oid',
-             'users.*',
              'courses.*'
              )
-          ->where('submitcourses.user_id', Auth::user()->id)
-          ->where('submitcourses.course_id', $courseinfo->id)
-          ->leftjoin('users', 'users.id', '=', 'submitcourses.user_id')
-          ->leftjoin('courses', 'courses.id', '=', 'submitcourses.course_id')
+          ->where('courses.id', $id)
           ->first();
 
       //dd($count_course);
-      if(isset($count_course)){
-
-        if($count_course->status == 1 || $count_course->status == 2){
-
-          return view('confirm_course.bil_course')->with([
-            'courseinfo' =>$coursess,
-            'user' =>"แก้ไขคอร์ส"
-          ]);
-
-        }else{
-
-          return view('confirm_course.index')->with([
-            'objs' =>$courseinfo,
-            'user' =>"แก้ไขคอร์ส"
-          ]);
-
-        }
-
-      }else{
-        return view('confirm_course.index')->with([
-          'objs' =>$courseinfo,
-          'user' =>"แก้ไขคอร์ส"
-        ]);
-      }
+      return view('confirm_course.index')->with([
+        'objs' =>$courseinfo,
+        'user' =>$user
+      ]);
 
 
 
@@ -278,114 +235,6 @@ class CourseinfoController extends Controller
 
 
 
-    public function submit_course_free(Request $request, $id)
-    {
-
-      $bank = DB::table('banks')
-        ->get();
-
-      $hbd = $request->get('hbd');
-
-      if($hbd == '0000-00-00'){
-          return redirect(url('confirm_course/'.$id))->with('hbd','กรอกวันเกิดนักเรียนด้วยนะจ๊ะ');
-      }
-
-      $this->validate($request, [
-           'name' => 'required',
-           'hbd' => 'required',
-           'phone' => 'required',
-           'address' => 'required',
-           'line' => 'required',
-       ]);
-
-       $package = Users::find(Auth::user()->id);
-       $package->name = $request['name'];
-       $package->hbd = $request['hbd'];
-       $package->phone = $request['phone'];
-       $package->line_id = $request['line'];
-       $package->address = $request['address'];
-       $package->save();
-
-       $countobj = DB::table('submitcourses')
-         ->select(
-            'submitcourses.*'
-            )
-         ->where('submitcourses.user_id', Auth::user()->id)
-         ->where('submitcourses.course_id', $id)
-         ->count();
-
-
-
-      if($countobj > 0){
-
-        $getc = DB::table('submitcourses')
-          ->select(
-             'submitcourses.*'
-             )
-          ->where('submitcourses.user_id', Auth::user()->id)
-          ->where('submitcourses.course_id', $id)
-          ->first();
-
-        //  dd($getc->Oid);
-
-        $coursess = DB::table('submitcourses')
-          ->select(
-             'submitcourses.*',
-             'submitcourses.user_id as Uid',
-             'submitcourses.id as Oid',
-             'users.*',
-             'courses.*'
-             )
-          ->where('submitcourses.user_id', Auth::user()->id)
-          ->where('submitcourses.id', $getc->id)
-          ->leftjoin('users', 'users.id', '=', 'submitcourses.user_id')
-          ->leftjoin('courses', 'courses.id', '=', 'submitcourses.course_id')
-          ->first();
-
-      //  dd($data);
-
-     return view('confirm_course.pay_course_free')->with([
-          'courseinfo' =>$coursess
-        ]);
-
-      } else{
-
-        $package = new submitcourse();
-        $package->user_id = Auth::user()->id;
-        $package->course_id = $id;
-        $package->status = 3;
-        $package->save();
-
-        $the_id = $package->id;
-
-
-        $coursess = DB::table('submitcourses')
-          ->select(
-             'submitcourses.*',
-             'submitcourses.user_id as Uid',
-             'submitcourses.id as Oid',
-             'users.*',
-             'courses.*'
-             )
-          ->where('submitcourses.user_id', Auth::user()->id)
-          ->where('submitcourses.id', $the_id)
-          ->leftjoin('users', 'users.id', '=', 'submitcourses.user_id')
-          ->leftjoin('courses', 'courses.id', '=', 'submitcourses.course_id')
-          ->first();
-
-      //  dd($data);
-
-     return view('confirm_course.pay_course_free')->with([
-          'courseinfo' =>$coursess
-        ]);
-
-
-      }
-
-
-
-
-    }
 
 
 
@@ -416,51 +265,10 @@ class CourseinfoController extends Controller
        $package->address = $request['address'];
        $package->save();
 
-       $countobj = DB::table('submitcourses')
-         ->select(
-            'submitcourses.*'
-            )
-         ->where('submitcourses.user_id', Auth::user()->id)
-         ->where('submitcourses.course_id', $id)
-         ->count();
 
 
 
-      if($countobj > 0){
 
-        $getc = DB::table('submitcourses')
-          ->select(
-             'submitcourses.*'
-             )
-          ->where('submitcourses.user_id', Auth::user()->id)
-          ->where('submitcourses.course_id', $id)
-          ->first();
-
-        //  dd($getc->Oid);
-
-        $coursess = DB::table('submitcourses')
-          ->select(
-             'submitcourses.*',
-             'submitcourses.user_id as Uid',
-             'submitcourses.id as Oid',
-             'users.*',
-             'courses.*'
-             )
-          ->where('submitcourses.user_id', Auth::user()->id)
-          ->where('submitcourses.id', $getc->id)
-          ->leftjoin('users', 'users.id', '=', 'submitcourses.user_id')
-          ->leftjoin('courses', 'courses.id', '=', 'submitcourses.course_id')
-          ->first();
-
-      //  dd($data);
-
-     return view('confirm_course.pay_course')->with([
-          'courseinfo' =>$coursess,
-          'bank' => $bank,
-          'bill' =>"บิลเลขที่"
-        ]);
-
-      } else{
 
         $package = new submitcourse();
         $package->user_id = Auth::user()->id;
@@ -493,7 +301,7 @@ class CourseinfoController extends Controller
         ]);
 
 
-      }
+
 
 
 
@@ -521,6 +329,7 @@ class CourseinfoController extends Controller
       $this->validate($request, [
            'bankname' => 'required',
            'totalmoney' => 'required',
+           'item_oriduct' => 'required',
            'day' => 'required'
        ]);
 
@@ -533,28 +342,7 @@ class CourseinfoController extends Controller
          ->where('submitcourses.id', $id)
          ->first();
 
-       if($countobj->status > 0){
 
-         $coursess = DB::table('submitcourses')
-           ->select(
-              'submitcourses.*',
-              'submitcourses.user_id as Uid',
-              'submitcourses.id as Oid',
-              'users.*',
-              'courses.*'
-              )
-           ->where('submitcourses.user_id', Auth::user()->id)
-           ->where('submitcourses.id', $id)
-           ->leftjoin('users', 'users.id', '=', 'submitcourses.user_id')
-           ->leftjoin('courses', 'courses.id', '=', 'submitcourses.course_id')
-           ->first();
-
-          return view('confirm_course.bil_course')->with([
-               'courseinfo' =>$coursess,
-               'bill' =>"บิลเลขที่"
-             ]);
-
-       }else{
 
          $image = $request->file('image');
 
@@ -562,6 +350,7 @@ class CourseinfoController extends Controller
         if($image == NULL){
 
          $package = submitcourse::find($id);
+         $package->end_time = $request['item_oriduct'];
          $package->bank_id = $request['bankname'];
          $package->money_tran = $request['totalmoney'];
          $package->date_tran = $request['day'];
@@ -582,6 +371,7 @@ class CourseinfoController extends Controller
 
 
         $package = submitcourse::find($id);
+        $package->end_time = $request['item_oriduct'];
         $package->bank_id = $request['bankname'];
         $package->money_tran = $request['totalmoney'];
         $package->date_tran = $request['day'];
@@ -661,10 +451,10 @@ class CourseinfoController extends Controller
 
                        Mail::send('mails.index', $data_toview, function($message) use ($data)
                        {
-                           $message->from($data['sender'], 'Learnsbuy');
+                           $message->from($data['sender'], 'Nubthong Su Sanon Shop');
                            $message->to($data['emailto'])
-                           ->replyTo($data['sender'], 'Learnsbuy.')
-                           ->subject('ใบเสร็จสำหรับการสั่งซื้อคอร์สเรียน Learnsbuy ');
+                           ->replyTo($data['sender'], 'Nubthong Su Sanon Shop.')
+                           ->subject('ใบเสร็จสำหรับการสั่งสินค้า');
 
                            //echo 'Confirmation email after registration is completed.';
                        });
@@ -695,7 +485,7 @@ class CourseinfoController extends Controller
              ]);
 
 
-       }
+
 
 
     }
